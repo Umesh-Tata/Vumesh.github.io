@@ -1,14 +1,14 @@
-
 import React from 'react';
 
 interface HeroProps {
   id: string;
   name: string;
   tagline: string;
-  profileImageUrl: string;
+  profileImageUrl: string; // This prop should now be for the circular profile image
+  heroBgImageUrl?: string; // Optional: For the background image if you decide to use one
 }
 
-const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl }) => {
+const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgImageUrl }) => {
   const scrollToProjects = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
     const projectsSection = document.getElementById('projects');
@@ -16,17 +16,26 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl }) => {
       projectsSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  
+
   return (
     <section id={id} className="relative h-screen flex items-center justify-center text-center bg-gradient-to-br from-sky-600 via-indigo-600 to-purple-700 text-white overflow-hidden">
-      <div className="absolute inset-0 opacity-20">
-        {/* Subtle background pattern or image could go here */}
-      </div>
+      {/* Optional: Background image for the hero section */}
+      {heroBgImageUrl && (
+        <div className="absolute inset-0 w-full h-full">
+          <img
+            src={heroBgImageUrl}
+            alt={`${name} hero background`}
+            className="w-full h-full object-cover object-center opacity-20"
+          />
+        </div>
+      )}
+
       <div className="relative z-10 p-4 animate-fade-in-up">
+        {/* The circular profile image with object-cover */}
         <img 
           src={profileImageUrl}
           alt={name}
-          className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg"
+          className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover"
         />
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
           Hello, I'm <span className="text-accent">{name}</span>
@@ -54,12 +63,11 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl }) => {
           </a>
         </div>
       </div>
-       {/* Optional: Animated chevron to indicate scrollability */}
        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg className="w-8 h-8 text-white opacity-70" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </div>
+         <svg className="w-8 h-8 text-white opacity-70" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+           <path d="M19 9l-7 7-7-7"></path>
+         </svg>
+       </div>
     </section>
   );
 };
