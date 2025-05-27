@@ -68,7 +68,7 @@ const projectsData: Project[] = [
 
 const skillsData: Skill[] = [
   // Programming Languages
-  { id: 'skill-java', name: 'Java', level: 90, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-red-500" /> },
+  { id: 'skill-java', name: 'Java', level: 95, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-red-500" /> },
   { id: 'skill-js', name: 'JavaScript', level: 85, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-yellow-500" /> },
   { id: 'skill-ts', name: 'TypeScript', level: 80, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-blue-500" /> },
   { id: 'skill-sql', name: 'SQL', level: 80, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-cyan-500" /> },
