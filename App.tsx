@@ -72,6 +72,7 @@ const skillsData: Skill[] = [
   { id: 'skill-js', name: 'JavaScript', level: 85, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-yellow-500" /> },
   { id: 'skill-ts', name: 'TypeScript', level: 80, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-blue-500" /> },
   { id: 'skill-sql', name: 'SQL', level: 80, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-cyan-500" /> },
+  { id: 'skill-python', name: 'Python', level: 80, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-green-500" /> },
   // Web & Mobile Technologies
   { id: 'skill-html', name: 'HTML5', level: 90, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-orange-500" /> },
   { id: 'skill-css', name: 'CSS3', level: 85, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-blue-600" /> },
@@ -82,12 +83,17 @@ const skillsData: Skill[] = [
   { id: 'skill-spring-boot', name: 'Spring Boot', level: 90, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-green-600" /> },
   { id: 'skill-spring-mvc', name: 'Spring MVC', level: 85, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-lime-500" /> },
   { id: 'skill-spring-cloud', name: 'Spring Cloud', level: 80, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-teal-500" /> },
+  { id: 'skill-dotnet', name: '.NET Core', level: 75, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-indigo-600" /> },
   { id: 'skill-node', name: 'Node.js', level: 70, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-green-400" /> },
   // Databases
   { id: 'skill-mysql', name: 'MySQL', level: 85, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-blue-700" /> },
   { id: 'skill-mongodb', name: 'MongoDB', level: 80, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-green-700" /> },
+  { id: 'skill-postgresql', name: 'PostgreSQL', level: 75, icon: <CodeBracketIcon className="w-5 h-5 mr-2 text-blue-800" /> },
   // Cloud & DevOps
   { id: 'skill-aws', name: 'AWS (EC2, S3)', level: 75, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-yellow-600" /> },
+  { id: 'skill-azure', name: 'Azure', level: 70, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-blue-600" /> },
+  { id: 'skill-bitbucket', name: 'Bitbucket', level: 80, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-gray-600" /> },
+  { id: 'skill-gcp', name: 'Google Cloud', level: 70, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-red-500" /> },
   { id: 'skill-jenkins', name: 'Jenkins', level: 80, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-gray-500" /> },
   { id: 'skill-maven', name: 'Maven', level: 80, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-red-600" /> },
   { id: 'skill-docker', name: 'Docker', level: 70, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-blue-400" /> },
@@ -100,8 +106,10 @@ const skillsData: Skill[] = [
   { id: 'skill-junit', name: 'JUnit', level: 85, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-lime-600" /> },
   { id: 'skill-mockito', name: 'Mockito', level: 80, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-green-600" /> },
   { id: 'skill-selenium', name: 'Selenium', level: 65, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-teal-600" /> },
+  { id: 'skill-cypress', name: 'Cypress', level: 70, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-emerald-500" /> },
   { id: 'skill-postman', name: 'Postman', level: 85, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-orange-400" /> },
   // Development Tools
+  { id: 'skill-jira', name: 'Jira', level: 80, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-indigo-600" /> },
   { id: 'skill-intellij', name: 'IntelliJ IDEA', level: 90, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-purple-600" /> },
   { id: 'skill-vscode', name: 'VS Code', level: 85, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-blue-500" /> },
   { id: 'skill-eclipse', name: 'Eclipse', level: 75, icon: <WrenchScrewdriverIcon className="w-5 h-5 mr-2 text-indigo-500" /> },
@@ -131,15 +139,18 @@ const experienceData: TimelineEvent[] = [
   },
   {
     id: 'exp-phoenix',
-    title: 'Full Stack Developer',
-    institution: 'Unitel Software',
-    period: '05/2020 - 04/2021',
+    title: 'Software Developer',
+    institution: 'Corefront Technologies Pvt Ltd',
+    period: '06/2019 - 04/2021',
     description: [
-      'Designed and developed a scalable, secure backend system using Java, Spring Boot, and Spring MVC, resulting in a 60% performance improvement through optimized queries and multithreaded processing.',
-      'Built responsive, cross-platform UI components using HTML5, CSS3, JavaScript, TypeScript, and Bootstrap, enhancing user experience and accessibility across web and mobile platforms.',
-      'Integrated and optimized RESTful APIs for seamless data exchange between microservices and frontend, utilizing JSON, and ensured secure communication with Spring Security.',
-      'Performed comprehensive unit and integration testing using JUnit, Mockito, and Postman; automated builds and deployments with Maven and Jenkins, ensuring high code quality and continuous delivery.',
-      'Collaborated in Agile/Scrum teams, contributing to sprint planning, daily stand-ups, and code reviews, while using Git for version control and deploying applications on Apache Tomcat with MySQL as the backend database.',
+      'Developed interactive research dashboards using React, JavaScript, HTML, and CSS, enabling engineers to visualize and interpret test data more effectively.',
+      'Connected frontend components to backend APIs using Node.js, integrating real-time data updates and enhancing user interactivity for research workflows.',
+      'Built Python scripts and trained basic machine learning models using TensorFlow and scikit-learn, automating the analysis of material behavior from experimental datasets.',
+      'Designed and maintained SQL database structures, ensuring reliable storage, indexing, and access to structured testing and simulation data.',
+      'Created modular, reusable frontend components, applying best practices for clean code architecture and improved maintainability across projects.',
+      'Optimized Python-based data pipelines, reducing script execution time and increasing model accuracy through better preprocessing and tuning.',
+      'Collaborated closely with materials engineers, gathering domain-specific requirements and translating them into functional UI features and backend logic.',
+      'Documented internal workflows and system structure, supporting team onboarding and reducing ramp-up time for new developers.'
     ],
     logoUrl: 'https://picsum.photos/seed/phoenix-logo/40/40'
   },
