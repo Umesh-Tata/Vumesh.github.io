@@ -26,11 +26,11 @@ const personalInfo = {
   tagline: "Full-Stack Developer | Java, Spring Boot, React",
   email: "jayavumesh1@gmail.com",
   phone: "(316) 461-1206",
-  linkedin: "https://www.linkedin.com/in/jaya-vumesh/", // Placeholder, update with actual URL
-  github: "https://github.com/Umesh-Tata", // Placeholder, update with actual URL
+  linkedin: "https://www.linkedin.com/in/jaya-vumesh/", 
+  github: "https://github.com/Umesh-Tata", 
   profileImageHero: "https://firebasestorage.googleapis.com/v0/b/img-storage-ef182.firebasestorage.app/o/portofolio%20images%2Fimage%20hero.jpg?alt=media&token=1c05337f-39c1-43c9-9110-61dacbf1e218",
   profileImageAbout: "https://firebasestorage.googleapis.com/v0/b/img-storage-ef182.firebasestorage.app/o/portofolio%20images%2Fimage%20about.jpg?alt=media&token=5e242e8f-82e2-4c02-b2a9-0d8751fc3158",
-  summary: "Full-stack developer with 2+ years of experience in building scalable web applications using Java, Spring Boot, and React. Skilled in designing RESTful APIs, working with MySQL and MongoDB, and deploying services on AWS. Experienced in CI/CD automation with Jenkins and Maven, and committed to writing clean, testable code in Agile environments. Known for delivering reliable solutions through strong collaboration and attention to detail."
+  summary: "Full-stack developer with 3+ years of experience designing and deploying scalable web applications using Java, Spring Boot, and ReactJS. Proficient in developing RESTful APIs, integrating SQL and NoSQL databases, and deploying services on AWS and Azure. Skilled in CI/CD (Jenkins, Maven), Docker, and Agile practices. Known for writing clean, testable code and collaborating across cross-functional teams to deliver reliable solutions."
 };
 
 const navItemsData: NavItem[] = [
