@@ -43,28 +43,7 @@ const navItemsData: NavItem[] = [
   { name: 'Contact', href: '#contact' },
 ];
 
-const projectsData: Project[] = [
-  {
-    id: 'project-android-converter',
-    title: 'Unit Converter App',
-    description: "• Developed a responsive and intuitive web application for converting values between units such as Celsius/Fahrenheit and kilograms/pounds.\n• Designed the user interface using React components and declarative styling, implementing robust conversion logic in TypeScript and focusing on an efficient user experience.",
-    imageUrl: 'https://picsum.photos/seed/android-converter-jaya/600/400',
-    tags: ['React', 'TypeScript', 'Web Development'],
-    liveUrl: 'https://unit-converter-50d.pages.dev/',
-    repoUrl: 'https://github.com/Umesh-Tata/unit-converter',
-    year: 'Recent'
-  },
-  {
-    id: 'project-ecommerce',
-    title: 'E-commerce Website',
-    description: "Built a dynamic e-commerce application featuring real-time inventory management, personalized product recommendations, and secure checkout via third-party payment APIs. Enhanced mobile responsiveness, increasing user engagement by 40%. Included integration with RESTful APIs and deployed components on AWS for scalability.",
-    imageUrl: 'https://picsum.photos/seed/ecommerce-jaya/600/400',
-    tags: ['React', 'Node.js', 'MongoDB', 'AWS', 'RESTful API'],
-    //liveUrl: '#', // Placeholder
-    //repoUrl: '#', // Placeholder
-    year: 'Recent'
-  }
-];
+
 
 const skillsData: Skill[] = [
   // Programming Languages
@@ -180,7 +159,28 @@ const educationData: TimelineEvent[] = [
     logoUrl: 'https://picsum.photos/seed/wsu-logo/40/40'
   },
 ];
-
+const projectsData: Project[] = [
+  {
+    id: 'project-android-converter',
+    title: 'Unit Converter App',
+    description: "• Developed a responsive and intuitive web application for converting values between units such as Celsius/Fahrenheit and kilograms/pounds.\n• Designed the user interface using React components and declarative styling, implementing robust conversion logic in TypeScript and focusing on an efficient user experience.",
+    imageUrl: 'https://picsum.photos/seed/android-converter-jaya/600/400',
+    tags: ['React', 'TypeScript', 'Web Development'],
+    liveUrl: 'https://unit-converter-50d.pages.dev/',
+    repoUrl: 'https://github.com/Umesh-Tata/unit-converter',
+    year: 'Recent'
+  },
+  {
+    id: 'project-ecommerce',
+    title: 'E-commerce Website',
+    description: "Built a dynamic e-commerce application featuring real-time inventory management, personalized product recommendations, and secure checkout via third-party payment APIs. Enhanced mobile responsiveness, increasing user engagement by 40%. Included integration with RESTful APIs and deployed components on AWS for scalability.",
+    imageUrl: 'https://picsum.photos/seed/ecommerce-jaya/600/400',
+    tags: ['React', 'Node.js', 'MongoDB', 'AWS', 'RESTful API'],
+    //liveUrl: '#', // Placeholder
+    //repoUrl: '#', // Placeholder
+    year: 'Recent'
+  }
+];
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
