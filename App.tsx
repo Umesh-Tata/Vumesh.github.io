@@ -218,17 +218,7 @@ const App: React.FC = () => {
             phone={personalInfo.phone}
             email={personalInfo.email}
         />
-        <Projects 
-            id="projects" 
-            projects={projectsData} 
-            icon={<CodeBracketIcon className="w-8 h-8 inline-block mr-2" />} 
-        />
-        <Skills 
-            id="skills" 
-            skills={skillsData} 
-            icon={<WrenchScrewdriverIcon className="w-8 h-8 inline-block mr-2" />} 
-        />
-        <Experience 
+         <Experience 
             id="experience" 
             experiences={experienceData} 
             icon={<BriefcaseIcon className="w-8 h-8 inline-block mr-2" />} 
@@ -237,6 +227,16 @@ const App: React.FC = () => {
             id="education" 
             educations={educationData} 
             icon={<AcademicCapIcon className="w-8 h-8 inline-block mr-2" />} 
+        />
+        <Skills 
+            id="skills" 
+            skills={skillsData} 
+            icon={<WrenchScrewdriverIcon className="w-8 h-8 inline-block mr-2" />} 
+        />
+        <Projects 
+            id="projects" 
+            projects={projectsData} 
+            icon={<CodeBracketIcon className="w-8 h-8 inline-block mr-2" />} 
         />
         <Contact 
             id="contact" 
