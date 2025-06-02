@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ name, email, linkedinUrl, githubUrl }) 
           &copy; {currentYear} {name}. All rights reserved.
         </p>
         <p className="text-xs mt-2">
-          Built with React & Tailwind CSS. Inspired by creativity.
+          Built with React & Tailwind CSS :)
         </p>
       </div>
     </footer>
