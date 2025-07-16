@@ -123,7 +123,7 @@ const experienceData: TimelineEvent[] = [
   {
     id: 'exp-phoenix',
     title: 'Software Developer',
-    institution: 'Corefront Technologies Pvt Ltd',
+    institution: 'Jeta Software pvt ltd',
     period: '06/2019 - 04/2021',
     description: [
   "Built and maintained RESTful endpoints in Node.js to fetch, filter, and relay sensor data efficiently.",
