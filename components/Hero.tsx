@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHeroEffects } from '../hooks/useHeroEffects';
+import ParticleCanvas from './ParticleCanvas';
 
 interface HeroProps {
   id: string;
@@ -24,6 +25,9 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
     <section ref={heroRef} id={id} className="relative h-screen flex items-center justify-center text-center hero-gradient text-white overflow-hidden">
       {/* Parallax background layer */}
       <div className="hero-parallax"></div>
+      
+      {/* Particle system canvas */}
+      <ParticleCanvas />
       
       {/* Optional: Background image for the hero section */}
       {heroBgImageUrl && (

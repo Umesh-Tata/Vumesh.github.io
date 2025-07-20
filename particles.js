@@ -1,8 +1,13 @@
 // Interactive Particle System for Hero Background
 class ParticleSystem {
   constructor(canvas) {
+    console.log('ParticleSystem constructor called');
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
+    if (!this.ctx) {
+      console.error('Failed to get canvas context');
+      return;
+    }
     this.particles = [];
     this.mousePosition = { x: 0, y: 0 };
     this.isMouseInCanvas = false;
@@ -12,13 +17,13 @@ class ParticleSystem {
     this.maxParticles = 50; // Limit for performance
     this.particleConfig = {
       baseSpeed: 0.2,
-      baseSize: 1.5,
-      baseOpacity: 0.4,
+      baseSize: 2.5, // Increased for visibility
+      baseOpacity: 0.6, // Increased for visibility
       glowRadius: 150,
       repelRadius: 100,
       repelStrength: 0.3,
       connectionDistance: 150,
-      connectionOpacity: 0.15
+      connectionOpacity: 0.25 // Increased for visibility
     };
     
     // Device-specific adjustments
@@ -44,6 +49,7 @@ class ParticleSystem {
     const rect = this.canvas.parentElement.getBoundingClientRect();
     this.canvas.width = rect.width;
     this.canvas.height = rect.height;
+    console.log('Canvas resized to:', this.canvas.width, 'x', this.canvas.height);
   }
   
   createParticles() {
@@ -266,39 +272,7 @@ class ParticleSystem {
   }
 }
 
-// Initialize particle system when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  // Create canvas element
-  const heroSection = document.querySelector('.hero-gradient');
-  if (!heroSection) return;
-  
-  const canvas = document.createElement('canvas');
-  canvas.style.position = 'absolute';
-  canvas.style.top = '0';
-  canvas.style.left = '0';
-  canvas.style.width = '100%';
-  canvas.style.height = '100%';
-  canvas.style.pointerEvents = 'none';
-  canvas.style.zIndex = '2'; // Above gradient, below content
-  canvas.id = 'particle-canvas';
-  
-  // Insert canvas after the parallax layer
-  const parallaxLayer = heroSection.querySelector('.hero-parallax');
-  if (parallaxLayer) {
-    parallaxLayer.insertAdjacentElement('afterend', canvas);
-  } else {
-    heroSection.prepend(canvas);
-  }
-  
-  // Check for reduced motion preference
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
-  if (!prefersReducedMotion) {
-    const particleSystem = new ParticleSystem(canvas);
-    
-    // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
-      particleSystem.destroy();
-    });
-  }
-});
+// Expose ParticleSystem globally for React integration
+window.ParticleSystem = ParticleSystem;
+
+console.log('ParticleSystem loaded and available globally');
