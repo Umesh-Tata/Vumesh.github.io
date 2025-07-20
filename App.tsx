@@ -19,6 +19,7 @@ import {
   EnvelopeIcon,
   ArrowUpIcon
 } from './constants';
+import { useDynamicEffects } from './dynamic-scripts.ts';
 
 // Portfolio Data based on Resume
 const personalInfo = {
@@ -183,6 +184,9 @@ const projectsData: Project[] = [
 ];
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  
+  // Initialize dynamic effects
+  useDynamicEffects();
 
   useEffect(() => {
     const checkScrollTop = () => {

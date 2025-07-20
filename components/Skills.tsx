@@ -10,7 +10,7 @@ interface SkillsProps {
 }
 
 const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
-  <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
+  <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center skill-item enhanced-hover">
     {/* Fix: Ensure skill.icon is a valid React element and cast to a specific type for cloneElement.
         This resolves a TypeScript error where 'className' was not recognized on 'Partial<unknown> & Attributes'. */}
     {skill.icon && React.isValidElement(skill.icon) && (
@@ -19,9 +19,9 @@ const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
       </div>
     )}
     <h4 className="text-md font-semibold text-neutral mb-2">{skill.name}</h4>
-    <div className="w-full bg-slate-200 rounded-full h-2.5">
+    <div className="w-full bg-slate-200 rounded-full h-2.5 skill-bar-enhanced">
       <div
-        className="bg-gradient-to-r from-secondary to-primary h-2.5 rounded-full"
+        className="bg-gradient-to-r from-secondary to-primary h-2.5 rounded-full skill-progress-enhanced"
         style={{ width: `${skill.level}%` }}
         aria-valuenow={skill.level}
         aria-valuemin={0}

@@ -9,9 +9,9 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 flex flex-col h-full">
+    <div className="bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 flex flex-col h-full project-card">
       <div className="relative">
-        <img src={project.imageUrl} alt={project.title} className="w-full h-56 object-cover" />
+        <img src={project.imageUrl} alt={project.title} className="w-full h-56 object-cover project-image" />
         <div className="absolute top-2 right-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded">
             {project.year}
         </div>

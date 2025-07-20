@@ -1,0 +1,23 @@
+/* Base styles for the portfolio application */
+
+/* Import the dynamic effects CSS */
+@import url('./dynamic-effects.css');
+
+/* Ensure smooth scrolling is applied globally */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base body styles */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure all elements use border-box sizing */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Additional styles can be added here */

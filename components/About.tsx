@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Section from './Section';
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'; // Assuming you might want icons
+import { EnvelopeIcon } from '@heroicons/react/24/outline'; // Assuming you might want icons
 
 // A simple PhoneIcon component if not using heroicons
 const DefaultPhoneIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
@@ -28,7 +28,7 @@ const About: React.FC<AboutProps> = ({ id, icon, summary, profileImageUrl, phone
           <img 
             src={profileImageUrl}
             alt="Jaya Vumesh T - Professional" 
-            className="rounded-lg shadow-xl mx-auto w-full max-w-xs md:max-w-sm"
+            className="rounded-lg shadow-xl mx-auto w-full max-w-xs md:max-w-sm image-hover-effect"
           />
         </div>
         <div className="md:col-span-2 space-y-4 text-lg text-neutral animate-fade-in-up" style={{animationDelay: '0.2s'}}>
