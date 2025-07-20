@@ -13,7 +13,7 @@ const Footer: React.FC<FooterProps> = ({ name, email, linkedinUrl, githubUrl }) 
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-neutral text-slate-300 py-12">
+    <footer className="bg-neutral text-slate-300 py-12 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl text-center">
         <div className="flex justify-center space-x-6 mb-6">
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-primary transition-colors">

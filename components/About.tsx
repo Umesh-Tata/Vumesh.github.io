@@ -22,7 +22,7 @@ interface AboutProps {
 
 const About: React.FC<AboutProps> = ({ id, icon, summary, profileImageUrl, phone, email }) => {
   return (
-    <Section id={id} title="About Me" titleIcon={icon} className="bg-white">
+    <Section id={id} title="About Me" titleIcon={icon} className="bg-base-100">
       <div className="grid md:grid-cols-3 gap-8 items-center">
         <div className="md:col-span-1 animate-slide-in-left">
           <img 

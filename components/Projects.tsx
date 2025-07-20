@@ -17,7 +17,7 @@ const Projects: React.FC<ProjectsProps> = ({ id, projects, icon }) => {
         title="My Recent Work" 
         subtitle="Here's a selection of projects I've recently worked on. Each showcases my commitment to quality, innovation, and user-centric design."
         titleIcon={icon}
-        className="bg-slate-50"
+        className="bg-slate-50 dark:bg-slate-800"
     >
       <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12">
         {projects.map((project, index) => (

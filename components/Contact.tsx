@@ -18,7 +18,7 @@ const Contact: React.FC<ContactProps> = ({ id, icon, email, linkedinUrl, githubU
       title="Get In Touch" 
       subtitle="I'm always excited to discuss new projects, creative ideas, or opportunities to collaborate. Feel free to reach out!"
       titleIcon={icon}
-      className="bg-slate-50"
+      className="bg-slate-50 dark:bg-slate-800"
     >
       <div className="max-w-lg mx-auto text-center">
         <p className="text-lg text-neutral mb-8">
@@ -37,7 +37,7 @@ const Contact: React.FC<ContactProps> = ({ id, icon, email, linkedinUrl, githubU
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="text-neutral hover:text-primary transition-colors duration-300 p-3 bg-white rounded-full shadow-md hover:shadow-lg"
+              className="text-neutral hover:text-primary transition-colors duration-300 p-3 bg-base-100 rounded-full shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
             >
               <LinkedInIcon className="w-6 h-6" />
             </a>
@@ -46,7 +46,7 @@ const Contact: React.FC<ContactProps> = ({ id, icon, email, linkedinUrl, githubU
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="text-neutral hover:text-primary transition-colors duration-300 p-3 bg-white rounded-full shadow-md hover:shadow-lg"
+              className="text-neutral hover:text-primary transition-colors duration-300 p-3 bg-base-100 rounded-full shadow-md hover:shadow-lg border border-gray-200 dark:border-gray-700"
             >
               <GitHubIcon className="w-6 h-6" />
             </a>
