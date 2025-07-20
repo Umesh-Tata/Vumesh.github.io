@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHeroEffects } from '../hooks/useHeroEffects';
 
 interface HeroProps {
   id: string;
@@ -9,6 +10,8 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgImageUrl }) => {
+  const heroRef = useHeroEffects();
+  
   const scrollToProjects = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
     const projectsSection = document.getElementById('projects');
@@ -18,7 +21,10 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
   };
 
   return (
-    <section id={id} className="relative h-screen flex items-center justify-center text-center bg-gradient-to-br from-sky-600 via-indigo-600 to-purple-700 text-white overflow-hidden">
+    <section ref={heroRef} id={id} className="relative h-screen flex items-center justify-center text-center hero-gradient text-white overflow-hidden">
+      {/* Parallax background layer */}
+      <div className="hero-parallax"></div>
+      
       {/* Optional: Background image for the hero section */}
       {heroBgImageUrl && (
         <div className="absolute inset-0 w-full h-full">
@@ -30,7 +36,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
         </div>
       )}
 
-      <div className="relative z-10 p-4 animate-fade-in-up">
+      <div className="hero-content relative z-10 p-4 animate-fade-in-up">
         {/* The circular profile image with object-cover */}
         <img 
           src={profileImageUrl}
