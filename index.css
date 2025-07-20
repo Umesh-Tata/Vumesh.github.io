@@ -18,6 +18,9 @@
   animation: gradientAnimation 15s ease infinite;
   position: relative;
   overflow: hidden;
+  /* Ensure canvas integration works properly */
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* Cursor-responsive dynamic effect */
@@ -61,6 +64,20 @@
 .hero-content {
   position: relative;
   z-index: 10;
+}
+
+/* Ensure particle canvas allows interaction with elements below */
+.hero-gradient canvas {
+  pointer-events: none;
+}
+
+/* Particle canvas specific optimizations */
+#particle-canvas {
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
 }
 
 /* Additional visual enhancements */

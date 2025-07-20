@@ -35,6 +35,12 @@ export const useHeroEffects = () => {
       mousePositionRef.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
       mousePositionRef.current.y = (e.clientY / window.innerHeight - 0.5) * 2;
       isMovingRef.current = true;
+      
+      // Emit custom event for particle system integration
+      const particleEvent = new CustomEvent('heroMouseMove', {
+        detail: { x: e.clientX, y: e.clientY, relativeX: x, relativeY: y }
+      });
+      heroElement.dispatchEvent(particleEvent);
     }, 16); // ~60fps
 
     // Smooth parallax animation
