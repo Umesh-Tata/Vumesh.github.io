@@ -3,9 +3,9 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" /> <!-- Replace with your actual favicon -->
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <title>Vumesh T - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -20,67 +20,344 @@
             'base-content': 'rgb(var(--color-base-content) / <alpha-value>)',
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'], // Example: Using Inter font
+            sans: ['Inter', 'sans-serif'],
           },
           animation: {
-            'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-            'slide-in-left': 'slideInLeft 0.5s ease-out forwards',
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+            'fade-in-down': 'fadeInDown 0.8s ease-out forwards',
+            'slide-in-left': 'slideInLeft 0.8s ease-out forwards',
+            'slide-in-right': 'slideInRight 0.8s ease-out forwards',
+            'scale-in': 'scaleIn 0.6s ease-out forwards',
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-slow': 'bounce 3s infinite',
+            'gradient-x': 'gradient-x 15s ease infinite',
+            'gradient-y': 'gradient-y 15s ease infinite',
+            'gradient-xy': 'gradient-xy 15s ease infinite',
+            'spin-slow': 'spin 20s linear infinite',
+            'wiggle': 'wiggle 1s ease-in-out infinite',
+            'morphing': 'morphing 8s ease-in-out infinite',
+            'glow': 'glow 2s ease-in-out infinite alternate',
+            'shimmer': 'shimmer 2s infinite',
           },
           keyframes: {
             fadeInUp: {
-              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '0%': { opacity: '0', transform: 'translateY(60px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            fadeInDown: {
+              '0%': { opacity: '0', transform: 'translateY(-60px)' },
               '100%': { opacity: '1', transform: 'translateY(0)' },
             },
             slideInLeft: {
-              '0%': { opacity: '0', transform: 'translateX(-20px)' },
+              '0%': { opacity: '0', transform: 'translateX(-100px)' },
               '100%': { opacity: '1', transform: 'translateX(0)' },
-            }
-          }
+            },
+            slideInRight: {
+              '0%': { opacity: '0', transform: 'translateX(100px)' },
+              '100%': { opacity: '1', transform: 'translateX(0)' },
+            },
+            scaleIn: {
+              '0%': { opacity: '0', transform: 'scale(0.8)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            'gradient-x': {
+              '0%, 100%': {
+                'background-size': '200% 200%',
+                'background-position': 'left center'
+              },
+              '50%': {
+                'background-size': '200% 200%',
+                'background-position': 'right center'
+              },
+            },
+            'gradient-y': {
+              '0%, 100%': {
+                'background-size': '200% 200%',
+                'background-position': 'center top'
+              },
+              '50%': {
+                'background-size': '200% 200%',
+                'background-position': 'center bottom'
+              },
+            },
+            'gradient-xy': {
+              '0%, 100%': {
+                'background-size': '400% 400%',
+                'background-position': 'left center'
+              },
+              '50%': {
+                'background-size': '400% 400%',
+                'background-position': 'right center'
+              },
+            },
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' },
+            },
+            morphing: {
+              '0%, 100%': { borderRadius: '40% 60% 70% 30% / 40% 40% 60% 50%' },
+              '34%': { borderRadius: '70% 30% 50% 50% / 30% 30% 70% 70%' },
+              '67%': { borderRadius: '100% 60% 60% 100% / 100% 100% 60% 60%' },
+            },
+            glow: {
+              'from': { boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)' },
+              'to': { boxShadow: '0 0 30px rgba(59, 130, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.3)' },
+            },
+            shimmer: {
+              '0%': { transform: 'translateX(-100%)' },
+              '100%': { transform: 'translateX(100%)' },
+            },
+          },
+          backdropBlur: {
+            xs: '2px',
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+          },
         }
       }
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --color-primary: 2 132 199; /* sky-600 */
-      --color-secondary: 129 140 248; /* indigo-400 */
-      --color-accent: 234 179 8; /* yellow-500 */
-      --color-neutral: 51 65 85; /* slate-700 */
-      --color-base-100: 248 250 252; /* slate-50 */
-      --color-base-content: 15 23 42; /* slate-900 */
+      --color-primary: 2 132 199;
+      --color-secondary: 129 140 248;
+      --color-accent: 234 179 8;
+      --color-neutral: 51 65 85;
+      --color-base-100: 248 250 252;
+      --color-base-content: 15 23 42;
     }
+    
     body {
       font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
     }
+    
     .section-title {
-      @apply text-3xl font-bold text-primary mb-2 text-center;
+      @apply text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent mb-4 text-center;
     }
+    
     .section-subtitle {
-      @apply text-xl text-neutral mb-8 text-center;
+      @apply text-xl text-neutral mb-12 text-center max-w-2xl mx-auto leading-relaxed;
     }
+    
+    /* Glassmorphism effect */
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .glass-dark {
+      background: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(to bottom, #2563eb, #7c3aed);
+    }
+    
+    /* Smooth transitions for all elements */
+    * {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Floating background elements */
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .floating-shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .floating-shape:nth-child(2) {
+      width: 120px;
+      height: 120px;
+      top: 70%;
+      right: 10%;
+      animation-delay: 2s;
+    }
+    
+    .floating-shape:nth-child(3) {
+      width: 60px;
+      height: 60px;
+      top: 40%;
+      left: 80%;
+      animation-delay: 4s;
+    }
+    
+    /* Custom card hover effects */
+    .card-hover {
+      transform: translateY(0);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px) rotateX(5deg);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Text gradient animation */
+    .text-gradient-animate {
+      background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #10b981);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-xy 4s ease infinite;
+    }
+    
+    /* Button glow effect */
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-glow::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-glow:hover::before {
+      left: 100%;
+    }
+    
     /* For fixed navbar offset */
     section[id] {
-        scroll-margin-top: 5.5rem; /* Adjust based on navbar height */
+      scroll-margin-top: 5.5rem;
+    }
+    
+    /* Intersection observer classes for animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .animate-on-scroll.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Particle background effect */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(59, 130, 246, 0.3);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
     }
   </style>
-<script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
-    "react": "https://esm.sh/react@^19.1.0",
-    "react/": "https://esm.sh/react@^19.1.0/",
-    "@heroicons/react/": "https://esm.sh/@heroicons/react@^2.2.0/"
+  <script type="importmap">
+  {
+    "imports": {
+      "react-dom/": "https://esm.sh/react-dom@^19.1.0/",
+      "react": "https://esm.sh/react@^19.1.0",
+      "react/": "https://esm.sh/react@^19.1.0/",
+      "@heroicons/react/": "https://esm.sh/@heroicons/react@^2.2.0/"
+    }
   }
-}
-</script>
+  </script>
 </head>
 <body>
+  <!-- Floating background shapes -->
+  <div class="floating-shape"></div>
+  <div class="floating-shape"></div>
+  <div class="floating-shape"></div>
+  
+  <!-- Particle background -->
+  <div class="particles" id="particles"></div>
+  
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
+  
+  <script>
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+        }
+      });
+    }, observerOptions);
+    
+    // Observe elements when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      const animateElements = document.querySelectorAll('.animate-on-scroll');
+      animateElements.forEach(el => observer.observe(el));
+    });
+    
+    // Create particle background
+    function createParticles() {
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 50;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+        particlesContainer.appendChild(particle);
+      }
+    }
+    
+    // Initialize particles when page loads
+    window.addEventListener('load', createParticles);
+  </script>
 </body>
 </html>
-<link rel="stylesheet" href="index.css">
-<script src="index.tsx" type="module"></script>

@@ -242,15 +242,18 @@ const App: React.FC = () => {
             id="contact" 
             icon={<EnvelopeIcon className="w-8 h-8 inline-block mr-2" />} 
             email={personalInfo.email}
+            phone={personalInfo.phone}
             linkedinUrl={personalInfo.linkedin}
             githubUrl={personalInfo.github}
         />
       </main>
-      <Footer 
-        name={personalInfo.name}
-        email={personalInfo.email}
-        linkedinUrl={personalInfo.linkedin}
-        githubUrl={personalInfo.github}
+            <Footer
+        personalInfo={{
+          name: personalInfo.name,
+          email: personalInfo.email,
+          linkedin: personalInfo.linkedin,
+          github: personalInfo.github,
+        }}
       />
       {showScrollTop && (
         <button
