@@ -1,0 +1,163 @@
+/* Enhanced Portfolio Styles */
+
+/* Animated Gradient Background */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background: linear-gradient(-45deg, #0ea5e9, #3b82f6, #6366f1, #8b5cf6, #a855f7);
+  }
+  25% {
+    background: linear-gradient(-45deg, #3b82f6, #6366f1, #8b5cf6, #a855f7, #0ea5e9);
+  }
+  50% {
+    background: linear-gradient(-45deg, #6366f1, #8b5cf6, #a855f7, #0ea5e9, #3b82f6);
+  }
+  75% {
+    background: linear-gradient(-45deg, #8b5cf6, #a855f7, #0ea5e9, #3b82f6, #6366f1);
+  }
+  100% {
+    background: linear-gradient(-45deg, #0ea5e9, #3b82f6, #6366f1, #8b5cf6, #a855f7);
+  }
+}
+
+/* Enhanced Hero Background */
+.hero-animated-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(-45deg, #0ea5e9, #3b82f6, #6366f1, #8b5cf6, #a855f7);
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite, gradientShift 30s ease infinite;
+  z-index: 1;
+}
+
+/* Cursor-responsive overlay */
+.cursor-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+}
+
+.cursor-glow.active {
+  opacity: 1;
+}
+
+/* Parallax background layers */
+.parallax-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  transition: transform 0.1s ease-out;
+}
+
+.parallax-layer-1 {
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  transform-origin: center center;
+}
+
+.parallax-layer-2 {
+  background: linear-gradient(-45deg, rgba(99, 102, 241, 0.08), rgba(168, 85, 247, 0.08));
+  transform-origin: center center;
+}
+
+/* Content layer */
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cursor-glow {
+    background-size: 200px 200px;
+  }
+  
+  .parallax-layer {
+    transition: transform 0.2s ease-out;
+  }
+}
+
+@media (max-width: 480px) {
+  .cursor-glow {
+    background-size: 150px 150px;
+  }
+  
+  .hero-animated-bg {
+    background-size: 300% 300%;
+    animation-duration: 20s, 40s; /* Slower animations on mobile */
+  }
+  
+  .parallax-layer {
+    display: none; /* Disable parallax on very small screens for performance */
+  }
+}
+
+/* Touch devices - disable cursor effects */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-glow {
+    display: none;
+  }
+  
+  .parallax-layer {
+    display: none;
+  }
+}
+
+/* Ensure smooth animations on lower-end devices */
+@media (prefers-reduced-motion: reduce) {
+  .hero-animated-bg {
+    animation: none;
+    background: linear-gradient(-45deg, #0ea5e9, #3b82f6, #6366f1, #8b5cf6);
+  }
+  
+  .cursor-glow::before {
+    transition: none;
+  }
+  
+  .parallax-layer {
+    transition: none;
+  }
+}
+
+/* Performance optimizations */
+.hero-enhanced {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Additional subtle effects for depth */
+.hero-enhanced::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  z-index: 3;
+  pointer-events: none;
+}

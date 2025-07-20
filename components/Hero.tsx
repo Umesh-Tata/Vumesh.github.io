@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface HeroProps {
   id: string;
@@ -17,11 +17,35 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
     }
   };
 
+  useEffect(() => {
+    // Import and initialize hero effects
+    const initHeroEffects = async () => {
+      try {
+        const { heroEffects } = await import('../heroEffects');
+        heroEffects.reinit(); // Reinitialize to ensure proper setup
+      } catch (error) {
+        console.warn('Hero effects could not be loaded:', error);
+      }
+    };
+
+    initHeroEffects();
+  }, []);
+
   return (
-    <section id={id} className="relative h-screen flex items-center justify-center text-center bg-gradient-to-br from-sky-600 via-indigo-600 to-purple-700 text-white overflow-hidden">
+    <section id={id} className="relative h-screen flex items-center justify-center text-center text-white overflow-hidden hero-enhanced">
+      {/* Enhanced Animated Background */}
+      <div className="hero-animated-bg"></div>
+      
+      {/* Parallax Layers */}
+      <div className="parallax-layer parallax-layer-1"></div>
+      <div className="parallax-layer parallax-layer-2"></div>
+      
+      {/* Cursor Glow Effect */}
+      <div className="cursor-glow"></div>
+
       {/* Optional: Background image for the hero section */}
       {heroBgImageUrl && (
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full z-4">
           <img
             src={heroBgImageUrl}
             alt={`${name} hero background`}
@@ -30,7 +54,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
         </div>
       )}
 
-      <div className="relative z-10 p-4 animate-fade-in-up">
+      <div className="hero-content p-4 animate-fade-in-up">
         {/* The circular profile image with object-cover */}
         <img 
           src={profileImageUrl}
