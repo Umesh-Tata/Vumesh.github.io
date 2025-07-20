@@ -19,10 +19,11 @@ const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
       </div>
     )}
     <h4 className="text-md font-semibold text-neutral mb-2">{skill.name}</h4>
-    <div className="w-full bg-slate-200 rounded-full h-2.5">
+    <div className="w-full bg-slate-200 rounded-full h-2.5 skill-bar">
       <div
-        className="bg-gradient-to-r from-secondary to-primary h-2.5 rounded-full"
+        className="bg-gradient-to-r from-secondary to-primary h-2.5 rounded-full skill-progress"
         style={{ width: `${skill.level}%` }}
+        data-level={`${skill.level}%`}
         aria-valuenow={skill.level}
         aria-valuemin={0}
         aria-valuemax={100}

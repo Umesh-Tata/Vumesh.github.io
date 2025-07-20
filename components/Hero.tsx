@@ -21,11 +21,12 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
     <section id={id} className="relative h-screen flex items-center justify-center text-center bg-gradient-to-br from-sky-600 via-indigo-600 to-purple-700 text-white overflow-hidden">
       {/* Optional: Background image for the hero section */}
       {heroBgImageUrl && (
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full parallax-container">
           <img
             src={heroBgImageUrl}
             alt={`${name} hero background`}
-            className="w-full h-full object-cover object-center opacity-20"
+            className="w-full h-full object-cover object-center opacity-20 parallax-element"
+            data-parallax-speed="0.5"
           />
         </div>
       )}
@@ -40,7 +41,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
           Hello, I'm <span className="text-accent">{name}</span>
         </h1>
-        <p className="text-xl sm:text-2xl md:text-3xl font-light mb-8 max-w-3xl mx-auto">
+        <p className="text-xl sm:text-2xl md:text-3xl font-light mb-8 max-w-3xl mx-auto tagline">
           {tagline}
         </p>
         <div className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center items-center">
