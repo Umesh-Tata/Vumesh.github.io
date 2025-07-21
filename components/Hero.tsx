@@ -69,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
           </a>
         </div>
       </div>
-       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce w-full flex justify-center">
          <svg className="w-8 h-8 text-white opacity-70" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
            <path d="M19 9l-7 7-7-7"></path>
          </svg>
