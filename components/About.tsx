@@ -24,26 +24,26 @@ const About: React.FC<AboutProps> = ({ id, icon, summary, profileImageUrl, phone
   return (
     <Section id={id} title="About Me" titleIcon={icon} className="bg-base-100">
       <div className="grid md:grid-cols-3 gap-8 items-center">
-        <div className="md:col-span-1 animate-slide-in-left">
+        <div className="md:col-span-1" data-animate="slide-in-left" data-delay="0.1">
           <img 
             src={profileImageUrl}
             alt="Jaya Vumesh T - Professional" 
-            className="rounded-lg shadow-xl mx-auto w-full max-w-xs md:max-w-sm"
+            className="rounded-lg shadow-xl mx-auto w-full max-w-xs md:max-w-sm hover-lift"
           />
         </div>
-        <div className="md:col-span-2 space-y-4 text-lg text-neutral animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+        <div className="md:col-span-2 space-y-4 text-lg text-neutral" data-animate="fade-in-up" data-delay="0.2">
           <p className="whitespace-pre-line">
             {summary}
           </p>
            <div className="mt-6 space-y-3">
             {email && (
-              <div className="flex items-center text-neutral hover:text-primary transition-colors">
+              <div className="flex items-center text-neutral hover:text-primary transition-colors hover-lift">
                 <EnvelopeIcon className="w-5 h-5 mr-3 text-secondary flex-shrink-0" />
                 <a href={`mailto:${email}`} className="break-all">{email}</a>
               </div>
             )}
             {phone && (
-              <div className="flex items-center text-neutral hover:text-primary transition-colors">
+              <div className="flex items-center text-neutral hover:text-primary transition-colors hover-lift">
                 {/* Using DefaultPhoneIcon if Heroicons not set up globally */}
                 <DefaultPhoneIcon className="w-5 h-5 mr-3 text-secondary flex-shrink-0" />
                 <span>{phone}</span>

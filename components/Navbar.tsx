@@ -78,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => scrollToSection(item.href, e)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 nav-item-hover
                     ${activeSection === item.href.substring(1)
                       ? 'text-white bg-primary' // Active item
                       : 'text-neutral hover:text-primary' // Inactive item
@@ -155,7 +155,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(item.href, e)}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300
+                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 nav-item-hover
                 ${activeSection === item.href.substring(1) ? 'text-white bg-primary' : 'text-neutral hover:bg-primary hover:text-white'}`}
                 aria-current={activeSection === item.href.substring(1) ? 'page' : undefined}
               >

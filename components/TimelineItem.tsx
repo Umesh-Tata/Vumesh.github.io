@@ -9,12 +9,12 @@ interface TimelineItemProps {
 
 const TimelineItem: React.FC<TimelineItemProps> = ({ item, isLast }) => {
   return (
-    <div className="relative pl-10 md:pl-12 pb-8">
+    <div className="relative pl-10 md:pl-12 pb-8 hover-lift">
       {/* Vertical line */}
       {!isLast && <div className="absolute left-4 md:left-5 top-1 bottom-0 w-0.5 bg-slate-300 dark:bg-slate-600"></div>}
       
       {/* Dot / Icon */}
-      <div className="absolute left-0 top-0 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-white shadow-md">
+      <div className="absolute left-0 top-0 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary text-white shadow-md hover-scale">
         {item.logoUrl ? (
           <img src={item.logoUrl} alt={`${item.institution} logo`} className="w-full h-full rounded-full object-cover" />
         ) : (
@@ -31,7 +31,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, isLast }) => {
         ) : (
           <ul className="list-disc list-inside space-y-1 text-neutral text-sm md:text-base">
             {item.description.map((desc, index) => (
-              <li key={index}>{desc}</li>
+              <li key={index} className="hover:text-primary transition-colors duration-200">{desc}</li>
             ))}
           </ul>
         )}

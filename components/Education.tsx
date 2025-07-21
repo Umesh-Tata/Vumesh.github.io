@@ -21,7 +21,12 @@ const Education: React.FC<EducationProps> = ({ id, educations, icon }) => {
     >
       <div className="relative">
         {educations.map((edu, index) => (
-          <div key={edu.id} className="animate-slide-in-left" style={{ animationDelay: `${index * 0.15}s` }}>
+          <div 
+            key={edu.id} 
+            data-animate="slide-in-left" 
+            data-delay={`${index * 0.15}`}
+            data-animate-child
+          >
             <TimelineItem item={edu} isLast={index === educations.length - 1} />
           </div>
         ))}

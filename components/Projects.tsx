@@ -21,7 +21,12 @@ const Projects: React.FC<ProjectsProps> = ({ id, projects, icon }) => {
     >
       <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12">
         {projects.map((project, index) => (
-          <div key={project.id} className="animate-fade-in-up" style={{ animationDelay: `${index * 0.1}s` }}>
+          <div 
+            key={project.id} 
+            data-animate="fade-in-up" 
+            data-delay={`${index * 0.1}`}
+            data-animate-child
+          >
             <ProjectCard project={project} />
           </div>
         ))}

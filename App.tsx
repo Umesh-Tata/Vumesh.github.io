@@ -11,6 +11,9 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { Project, Skill, TimelineEvent, NavItem } from './types';
 import { useDarkMode } from './hooks/useDarkMode';
+import { useScrollProgress, useSectionTransitions } from './hooks/useScrollAnimations';
+import { useAnimationInitializer } from './hooks/useAnimationInitializer';
+import { usePerformanceOptimizer } from './hooks/usePerformanceOptimizer';
 import {
   CodeBracketIcon,
   UserCircleIcon,
@@ -185,6 +188,10 @@ const projectsData: Project[] = [
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const { isDarkMode } = useDarkMode();
+  const scrollProgress = useScrollProgress();
+  useSectionTransitions();
+  useAnimationInitializer();
+  usePerformanceOptimizer();
 
   useEffect(() => {
     const checkScrollTop = () => {
@@ -204,6 +211,17 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-base-100 text-base-content antialiased">
+      {/* Global background texture */}
+      <div className="global-background-texture"></div>
+      
+      {/* Scroll progress indicator */}
+      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-700 z-50">
+        <div 
+          className="h-full bg-gradient-to-r from-blue-500 to-purple-600 scroll-progress-bar"
+          style={{ width: `${scrollProgress}%` }}
+        ></div>
+      </div>
+      
       <Navbar navItems={navItemsData} />
       <main className="pt-[5.5rem]"> {/* Add padding-top to offset fixed navbar */}
         <Hero 
@@ -257,7 +275,7 @@ const App: React.FC = () => {
       {showScrollTop && (
         <button
           onClick={scrollTop}
-          className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg hover:bg-sky-700 transition-colors duration-300 z-50 animate-fade-in-up"
+          className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg hover:bg-sky-700 transition-colors duration-300 z-50 animate-fade-in-up hover-lift hover-glow"
           aria-label="Scroll to top"
         >
           <ArrowUpIcon className="w-6 h-6" />
