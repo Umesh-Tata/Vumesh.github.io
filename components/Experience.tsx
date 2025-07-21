@@ -17,7 +17,7 @@ const Experience: React.FC<ExperienceProps> = ({ id, experiences, icon }) => {
       title="Work Experience" 
       subtitle="My professional journey, highlighting key roles and accomplishments that have shaped my expertise."
       titleIcon={icon}
-      className="bg-slate-50"
+      className="bg-slate-50 dark:bg-slate-800"
     >
       <div className="relative">
         {experiences.map((exp, index) => (

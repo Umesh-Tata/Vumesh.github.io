@@ -10,7 +10,7 @@ interface SkillsProps {
 }
 
 const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
-  <div className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
+  <div className="bg-base-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
     {/* Fix: Ensure skill.icon is a valid React element and cast to a specific type for cloneElement.
         This resolves a TypeScript error where 'className' was not recognized on 'Partial<unknown> & Attributes'. */}
     {skill.icon && React.isValidElement(skill.icon) && (
@@ -19,7 +19,7 @@ const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
       </div>
     )}
     <h4 className="text-md font-semibold text-neutral mb-2">{skill.name}</h4>
-    <div className="w-full bg-slate-200 rounded-full h-2.5">
+    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
       <div
         className="bg-gradient-to-r from-secondary to-primary h-2.5 rounded-full"
         style={{ width: `${skill.level}%` }}
@@ -28,7 +28,7 @@ const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
         aria-valuemax={100}
       ></div>
     </div>
-    <p className="text-xs text-slate-500 mt-1">{skill.level}% Proficient</p>
+    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{skill.level}% Proficient</p>
   </div>
 );
 
@@ -39,7 +39,7 @@ const Skills: React.FC<SkillsProps> = ({ id, skills, icon }) => {
       title="Technical Skills"
       subtitle="A glimpse into my technical toolkit. I'm always eager to learn and adapt to new technologies to build cutting-edge solutions."
       titleIcon={icon}
-      className="bg-white"
+      className="bg-base-100"
     >
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
         {skills.map((skill, index) => (

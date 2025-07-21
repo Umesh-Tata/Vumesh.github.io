@@ -9,7 +9,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="bg-white rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 flex flex-col h-full">
+    <div className="bg-base-100 rounded-xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:scale-105 flex flex-col h-full border border-gray-200 dark:border-gray-700">
       <div className="relative">
         <img src={project.imageUrl} alt={project.title} className="w-full h-56 object-cover" />
         <div className="absolute top-2 right-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded">
@@ -29,7 +29,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </span>
           ))}
         </div>
-        <div className="mt-auto flex justify-start space-x-3 pt-2 border-t border-slate-200">
+        <div className="mt-auto flex justify-start space-x-3 pt-2 border-t border-slate-200 dark:border-slate-700">
           {project.liveUrl && (
             <a
               href={project.liveUrl}

@@ -9,6 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -52,9 +53,21 @@
       --color-base-100: 248 250 252; /* slate-50 */
       --color-base-content: 15 23 42; /* slate-900 */
     }
+    
+    .dark {
+      --color-primary: 14 165 233; /* sky-500 */
+      --color-secondary: 147 197 253; /* blue-300 */
+      --color-accent: 251 191 36; /* amber-400 */
+      --color-neutral: 148 163 184; /* slate-400 */
+      --color-base-100: 15 23 42; /* slate-900 */
+      --color-base-content: 248 250 252; /* slate-50 */
+    }
+    
     body {
       font-family: 'Inter', sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
+    
     .section-title {
       @apply text-3xl font-bold text-primary mb-2 text-center;
     }
@@ -64,6 +77,11 @@
     /* For fixed navbar offset */
     section[id] {
         scroll-margin-top: 5.5rem; /* Adjust based on navbar height */
+    }
+    
+    /* Dark mode transitions */
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     }
   </style>
 <script type="importmap">

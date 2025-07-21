@@ -17,7 +17,7 @@ const Education: React.FC<EducationProps> = ({ id, educations, icon }) => {
       title="Education" 
       subtitle="My academic background and qualifications that laid the foundation for my career in technology."
       titleIcon={icon}
-      className="bg-white"
+      className="bg-base-100"
     >
       <div className="relative">
         {educations.map((edu, index) => (
