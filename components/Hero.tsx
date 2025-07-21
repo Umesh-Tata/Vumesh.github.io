@@ -53,7 +53,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
           <a
             href="#projects"
             onClick={scrollToProjects}
-            className="bg-accent text-neutral hover:bg-yellow-400 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto !text-neutral"
+            className="bg-accent text-black hover:bg-yellow-400 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto !text-neutral"
           >
             View My Work
           </a>
