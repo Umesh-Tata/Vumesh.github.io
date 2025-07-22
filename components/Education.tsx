@@ -19,13 +19,10 @@ const Education: React.FC<EducationProps> = ({ id, educations, icon }) => {
       titleIcon={icon}
       className="bg-base-100"
     >
-      <div className="relative">
+      <div>
         {educations.map((edu, index) => (
           <div 
             key={edu.id} 
-            data-animate="slide-in-left" 
-            data-delay={`${index * 0.15}`}
-            data-animate-child
           >
             <TimelineItem item={edu} isLast={index === educations.length - 1} />
           </div>
