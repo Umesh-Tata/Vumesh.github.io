@@ -45,9 +45,6 @@ const Skills: React.FC<SkillsProps> = ({ id, skills, icon }) => {
         {skills.map((skill, index) => (
           <div 
             key={skill.id} 
-            data-animate="fade-in-up" 
-            data-delay={`${index * 0.05}`}
-            data-animate-child
           >
              <SkillItem skill={skill} />
           </div>

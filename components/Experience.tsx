@@ -19,13 +19,10 @@ const Experience: React.FC<ExperienceProps> = ({ id, experiences, icon }) => {
       titleIcon={icon}
       className="bg-slate-50 dark:bg-slate-800"
     >
-      <div className="relative">
+      <div>
         {experiences.map((exp, index) => (
           <div 
             key={exp.id} 
-            data-animate="slide-in-left" 
-            data-delay={`${index * 0.15}`}
-            data-animate-child
           >
             <TimelineItem item={exp} isLast={index === experiences.length - 1} />
           </div>

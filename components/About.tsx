@@ -24,14 +24,14 @@ const About: React.FC<AboutProps> = ({ id, icon, summary, profileImageUrl, phone
   return (
     <Section id={id} title="About Me" titleIcon={icon} className="bg-base-100">
       <div className="grid md:grid-cols-3 gap-8 items-center">
-        <div className="md:col-span-1" data-animate="slide-in-left" data-delay="0.1">
+        <div className="md:col-span-1">
           <img 
             src={profileImageUrl}
             alt="Jaya Vumesh T - Professional" 
             className="rounded-lg shadow-xl mx-auto w-full max-w-xs md:max-w-sm hover-lift"
           />
         </div>
-        <div className="md:col-span-2 space-y-4 text-lg text-neutral" data-animate="fade-in-up" data-delay="0.2">
+        <div className="md:col-span-2 space-y-4 text-lg text-neutral">
           <p className="whitespace-pre-line">
             {summary}
           </p>

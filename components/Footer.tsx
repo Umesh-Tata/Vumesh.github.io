@@ -15,7 +15,7 @@ const Footer: React.FC<FooterProps> = ({ name, email, linkedinUrl, githubUrl }) 
   return (
     <footer className="bg-neutral text-slate-300 py-12 transition-colors duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl text-center">
-        <div className="flex justify-center space-x-6 mb-6" data-animate="fade-in-up" data-delay="0.1">
+        <div className="flex justify-center space-x-6 mb-6">
           <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-primary transition-colors hover-lift">
             <LinkedInIcon className="w-7 h-7" />
           </a>
@@ -26,10 +26,10 @@ const Footer: React.FC<FooterProps> = ({ name, email, linkedinUrl, githubUrl }) 
             <EnvelopeIcon className="w-7 h-7" />
           </a>
         </div>
-        <p className="text-sm" data-animate="fade-in-up" data-delay="0.2">
+        <p className="text-sm">
           &copy; {currentYear} {name}. All rights reserved.
         </p>
-        <p className="text-xs mt-2" data-animate="fade-in-up" data-delay="0.3">
+        <p className="text-xs mt-2">
           Built with React & Tailwind CSS :)
         </p>
       </div>

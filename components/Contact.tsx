@@ -21,10 +21,10 @@ const Contact: React.FC<ContactProps> = ({ id, icon, email, linkedinUrl, githubU
       className="bg-slate-50 dark:bg-slate-800"
     >
       <div className="max-w-lg mx-auto text-center">
-        <p className="text-lg text-neutral mb-8" data-animate="fade-in-up" data-delay="0.1">
+        <p className="text-lg text-neutral mb-8">
           Whether you have a question or just want to say hi, my inbox is always open.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6" data-animate="fade-in-up" data-delay="0.2">
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
           <a
             href={`mailto:${email}`}
             className="flex items-center justify-center w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-lg shadow-md hover:bg-sky-700 transition-colors duration-300 text-lg font-medium hover-lift button-pulse"
@@ -52,8 +52,6 @@ const Contact: React.FC<ContactProps> = ({ id, icon, email, linkedinUrl, githubU
             </a>
           </div>
         </div>
-        {/* Optional: A simple contact form could be added here if backend/service is available */}
-        {/* For now, direct links are provided. */}
       </div>
     </Section>
   );

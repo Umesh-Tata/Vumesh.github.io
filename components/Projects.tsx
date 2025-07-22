@@ -23,9 +23,6 @@ const Projects: React.FC<ProjectsProps> = ({ id, projects, icon }) => {
         {projects.map((project, index) => (
           <div 
             key={project.id} 
-            data-animate="fade-in-up" 
-            data-delay={`${index * 0.1}`}
-            data-animate-child
           >
             <ProjectCard project={project} />
           </div>
