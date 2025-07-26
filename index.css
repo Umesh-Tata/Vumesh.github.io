@@ -158,3 +158,29 @@
 .touch-device .hero-parallax {
   transform: none !important;
 }
+
+/* ===== VIEW MY WORK BUTTON DARK MODE OVERRIDE ===== */
+/* Ensure the 'View My Work' button maintains its light mode colors regardless of theme */
+
+/* Target the specific button by its text content and location */
+.hero-content a[href="#projects"] {
+  background-color: rgb(234 179 8) !important; /* yellow-500 - light mode accent color */
+  color: rgb(51 65 85) !important; /* slate-700 - neutral color for text */
+}
+
+/* Override dark mode specifically */
+.dark .hero-content a[href="#projects"] {
+  background-color: rgb(234 179 8) !important; /* Force light mode yellow-500 */
+  color: rgb(51 65 85) !important; /* Force light mode neutral text color */
+}
+
+/* Ensure hover states also maintain light mode colors */
+.hero-content a[href="#projects"]:hover {
+  background-color: rgb(250 204 21) !important; /* yellow-400 - hover color */
+  color: rgb(51 65 85) !important; /* Maintain text color on hover */
+}
+
+.dark .hero-content a[href="#projects"]:hover {
+  background-color: rgb(250 204 21) !important; /* Force light mode hover color */
+  color: rgb(51 65 85) !important; /* Force light mode text color */
+}
