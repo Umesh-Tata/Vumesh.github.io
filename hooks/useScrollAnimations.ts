@@ -1,10 +1,122 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 
-// No-op hooks for scroll animations and section transitions
-export const useScrollAnimations = () => ({ elementRef: null, isVisible: true });
-export const useMultiScrollAnimations = () => ({ animatedElements: new Set() });
-export const useSectionTransitions = () => {};
-export const useParallaxScroll = () => null;
+// Enhanced scroll animations with Intersection Observer
+export const useScrollAnimations = () => {
+  const elementRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          entry.target.classList.add('section-visible');
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-50px 0px'
+      }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, []);
+
+  return { elementRef, isVisible };
+};
+
+// Multi-element scroll animations
+export const useMultiScrollAnimations = () => {
+  const [animatedElements, setAnimatedElements] = useState<Set<Element>>(new Set());
+
+  const observeElements = useCallback((elements: Element[]) => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            setAnimatedElements(prev => new Set(prev).add(entry.target));
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '-20px 0px'
+      }
+    );
+
+    elements.forEach(element => observer.observe(element));
+
+    return () => {
+      elements.forEach(element => observer.unobserve(element));
+    };
+  }, []);
+
+  return { animatedElements, observeElements };
+};
+
+// Section transitions with fade-in effect
+export const useSectionTransitions = () => {
+  useEffect(() => {
+    const sections = document.querySelectorAll('section[id], .section-transition');
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('section-visible');
+            entry.target.classList.remove('section-enter');
+          } else {
+            // Optional: reset animation when section is out of view
+            // entry.target.classList.remove('section-visible');
+            // entry.target.classList.add('section-enter');
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '-80px 0px -80px 0px'
+      }
+    );
+
+    sections.forEach(section => {
+      section.classList.add('section-transition', 'section-enter');
+      observer.observe(section);
+    });
+
+    return () => {
+      sections.forEach(section => observer.unobserve(section));
+    };
+  }, []);
+};
+
+// Parallax scroll effect
+export const useParallaxScroll = () => {
+  const parallaxRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (parallaxRef.current) {
+        const scrolled = window.pageYOffset;
+        const rate = scrolled * -0.5;
+        parallaxRef.current.style.transform = `translateY(${rate}px)`;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return parallaxRef;
+};
 
 // Keep scroll progress bar logic only
 export const useScrollProgress = () => {
