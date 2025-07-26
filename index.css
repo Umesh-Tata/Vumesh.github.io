@@ -120,8 +120,9 @@
     display: none; /* Disable cursor effect on mobile */
   }
   
+  /* Keep parallax effect on mobile but reduce intensity */
   .hero-parallax {
-    transform: none !important; /* Disable parallax on mobile */
+    transform: translate(calc(var(--parallax-x, 0) * 0.5), calc(var(--parallax-y, 0) * 0.5)) !important;
   }
   
   /* Slower animation on mobile for better performance */
@@ -137,8 +138,9 @@
     background-position: 0% 50%;
   }
   
+  /* Keep parallax effect but reduce intensity for reduced motion preference */
   .hero-parallax {
-    transform: none !important;
+    transform: translate(calc(var(--parallax-x, 0) * 0.3), calc(var(--parallax-y, 0) * 0.3)) !important;
   }
   
   .hero-gradient::before {
@@ -156,5 +158,31 @@
 }
 
 .touch-device .hero-parallax {
-  transform: none !important;
+  transform: translate(calc(var(--parallax-x, 0) * 0.4), calc(var(--parallax-y, 0) * 0.4)) !important;
+}
+
+/* ===== VIEW MY WORK BUTTON DARK MODE OVERRIDE ===== */
+/* Ensure the 'View My Work' button maintains its light mode colors regardless of theme */
+
+/* Target the specific button by its text content and location */
+.hero-content a[href="#projects"] {
+  background-color: rgb(234 179 8) !important; /* yellow-500 - light mode accent color */
+  color: rgb(51 65 85) !important; /* slate-700 - neutral color for text */
+}
+
+/* Override dark mode specifically */
+.dark .hero-content a[href="#projects"] {
+  background-color: rgb(234 179 8) !important; /* Force light mode yellow-500 */
+  color: rgb(51 65 85) !important; /* Force light mode neutral text color */
+}
+
+/* Ensure hover states also maintain light mode colors */
+.hero-content a[href="#projects"]:hover {
+  background-color: rgb(250 204 21) !important; /* yellow-400 - hover color */
+  color: rgb(51 65 85) !important; /* Maintain text color on hover */
+}
+
+.dark .hero-content a[href="#projects"]:hover {
+  background-color: rgb(250 204 21) !important; /* Force light mode hover color */
+  color: rgb(51 65 85) !important; /* Force light mode text color */
 }
