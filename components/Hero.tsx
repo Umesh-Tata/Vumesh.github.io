@@ -26,15 +26,15 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
       <div className="hero-parallax"></div>
       
       {/* Optional: Background image for the hero section */}
-      {heroBgImageUrl && (
-       /* <div className="absolute inset-0 w-full h-full">
+      {/* {heroBgImageUrl && (
+        <div className="absolute inset-0 w-full h-full">
           <img
             src={heroBgImageUrl}
             alt={`${name} hero background`}
             className="w-full h-full object-cover object-center opacity-20"
           />
-        </div>*/
-      )}
+        </div>
+      )} */}
 
       <div className="hero-content relative z-10 p-4">
         {/* The circular profile image with object-cover */}
