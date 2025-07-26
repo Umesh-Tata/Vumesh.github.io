@@ -45,8 +45,8 @@ export const useHeroEffects = () => {
         currentPositionRef.current.y += (mousePositionRef.current.y - currentPositionRef.current.y) * 0.1;
 
         // Apply parallax transform
-        const parallaxX = currentPositionRef.current.x * 20; // 20px max movement
-        const parallaxY = currentPositionRef.current.y * 20;
+        const parallaxX = currentPositionRef.current.x * 30; // 30px max movement for more visible effect
+        const parallaxY = currentPositionRef.current.y * 30;
 
         heroElement.style.setProperty('--parallax-x', `${parallaxX}px`);
         heroElement.style.setProperty('--parallax-y', `${parallaxY}px`);
