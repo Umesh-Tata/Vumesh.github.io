@@ -53,7 +53,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
           <a
             href="#projects"
             onClick={scrollToProjects}
-            className="bg-accent text-black hover:bg-yellow-400 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto !text-neutral hover-lift button-hover interactive-element"
+            className="bg-accent text-black hover:bg-yellow-400 font-semibold py-3 px-8 rounded-lg shadow-md w-full sm:w-auto !text-neutral hover-lift button-hover interactive-element"
           >
             View My Work
           </a>
@@ -63,7 +63,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
               e.preventDefault();
               document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-neutral font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto hover-lift button-hover interactive-element"
+            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-neutral font-semibold py-3 px-8 rounded-lg shadow-md w-full sm:w-auto hover-lift button-hover interactive-element"
           >
             Get In Touch
           </a>

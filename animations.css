@@ -216,18 +216,22 @@
 .animate-stagger-4 { animation-delay: 0.4s; }
 .animate-stagger-5 { animation-delay: 0.5s; }
 
-/* ===== ENHANCED CONSISTENT HOVER EFFECTS ===== */
+/* ===== FIXED HOVER EFFECTS - NO LAYOUT SHIFTS ===== */
 
 /* Universal hover transition for all interactive elements */
 .interactive-element {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Enhanced lift effect with subtle shadow */
+/* Enhanced lift effect with transform-only movement */
 .hover-lift {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
               box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-lift:hover {
@@ -236,10 +240,12 @@
               0 10px 20px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* Enhanced scale effect */
+/* Enhanced scale effect with transform-only scaling */
 .hover-scale {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-scale:hover {
@@ -248,10 +254,12 @@
               0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* Enhanced glow effect */
+/* Enhanced glow effect with transform-only movement */
 .hover-glow {
   transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-glow:hover {
@@ -260,10 +268,11 @@
   transform: translateY(-2px);
 }
 
-/* Subtle background color shift */
+/* Subtle background color shift with transform-only movement */
 .hover-bg-shift {
   transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+              transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-bg-shift:hover {
@@ -297,7 +306,7 @@
   will-change: transform;
 }
 
-/* ===== ENHANCED PROJECT CARD ANIMATIONS ===== */
+/* ===== FIXED PROJECT CARD ANIMATIONS - NO LAYOUT SHIFTS ===== */
 
 @keyframes cardHover {
   0% {
@@ -312,7 +321,9 @@
 }
 
 .project-card-hover {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -339,7 +350,7 @@
               0 10px 20px -5px rgba(0, 0, 0, 0.1);
 }
 
-/* ===== ENHANCED NAVIGATION ANIMATIONS ===== */
+/* ===== FIXED NAVIGATION ANIMATIONS - NO LAYOUT SHIFTS ===== */
 
 @keyframes navItemHover {
   from {
@@ -351,7 +362,10 @@
 }
 
 .nav-item-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
@@ -363,7 +377,7 @@
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
 }
 
@@ -376,10 +390,13 @@
   transform: translateY(-3px);
 }
 
-/* ===== ENHANCED SKILL ITEM ANIMATIONS ===== */
+/* ===== FIXED SKILL ITEM ANIMATIONS - NO LAYOUT SHIFTS ===== */
 
 .skill-item-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }
@@ -412,7 +429,7 @@
   z-index: 1;
 }
 
-/* ===== ENHANCED BUTTON ANIMATIONS ===== */
+/* ===== FIXED BUTTON ANIMATIONS - NO LAYOUT SHIFTS ===== */
 
 @keyframes buttonPulse {
   0% {
@@ -431,7 +448,10 @@
 }
 
 .button-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
 }

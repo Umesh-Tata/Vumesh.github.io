@@ -14,7 +14,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         <img 
           src={project.imageUrl} 
           alt={project.title} 
-          className="w-full h-56 object-cover transition-transform duration-500 hover:scale-110" 
+          className="w-full h-56 object-cover hover-scale" 
         />
         <div className="absolute top-2 right-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded hover-scale">
             {project.year}

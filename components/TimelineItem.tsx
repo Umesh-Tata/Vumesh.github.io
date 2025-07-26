@@ -31,7 +31,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, isLast }) => {
         ) : (
           <ul className="list-disc list-inside space-y-1 text-neutral text-sm md:text-base">
             {item.description.map((desc, index) => (
-              <li key={index} className="hover:text-primary transition-colors duration-200">{desc}</li>
+              <li key={index} className="hover:text-primary">{desc}</li>
             ))}
           </ul>
         )}

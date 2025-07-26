@@ -37,13 +37,13 @@ const About: React.FC<AboutProps> = ({ id, icon, summary, profileImageUrl, phone
           </p>
            <div className="mt-6 space-y-3">
             {email && (
-              <div className="flex items-center text-neutral hover:text-primary transition-colors hover-lift interactive-element">
+              <div className="flex items-center text-neutral hover:text-primary hover-lift interactive-element">
                 <EnvelopeIcon className="w-5 h-5 mr-3 text-secondary flex-shrink-0" />
                 <a href={`mailto:${email}`} className="break-all">{email}</a>
               </div>
             )}
             {phone && (
-              <div className="flex items-center text-neutral hover:text-primary transition-colors hover-lift interactive-element">
+              <div className="flex items-center text-neutral hover:text-primary hover-lift interactive-element">
                 {/* Using DefaultPhoneIcon if Heroicons not set up globally */}
                 <DefaultPhoneIcon className="w-5 h-5 mr-3 text-secondary flex-shrink-0" />
                 <span>{phone}</span>
