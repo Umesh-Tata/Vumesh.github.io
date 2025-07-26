@@ -43,29 +43,19 @@ export const usePerformanceOptimizer = () => {
         el.style.willChange = 'transform, opacity';
       });
 
-      // Clean up will-change after animations complete
-      const cleanupWillChange = () => {
-        animatedElements.forEach(element => {
-          const el = element as HTMLElement;
-          setTimeout(() => {
-            el.style.willChange = 'auto';
-          }, 1000); // Clean up after animation duration
-        });
-      };
-
       // Listen for animation end events
-      const handleAnimationEnd = (e: AnimationEvent) => {
+      const handleAnimationEnd = (e: Event) => {
         const target = e.target as HTMLElement;
         target.style.willChange = 'auto';
       };
 
       animatedElements.forEach(element => {
-        element.addEventListener('animationend', handleAnimationEnd);
+        element.addEventListener('animationend', handleAnimationEnd as EventListener);
       });
 
       return () => {
         animatedElements.forEach(element => {
-          element.removeEventListener('animationend', handleAnimationEnd);
+          element.removeEventListener('animationend', handleAnimationEnd as EventListener);
         });
       };
     };

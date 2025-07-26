@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 export const useHeroEffects = () => {
   const heroRef = useRef<HTMLElement>(null);
-  const animationFrameRef = useRef<number>();
+  const animationFrameRef = useRef<number | undefined>(undefined);
   const mousePositionRef = useRef({ x: 0, y: 0 });
   const currentPositionRef = useRef({ x: 0, y: 0 });
   const isMovingRef = useRef(false);

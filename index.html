@@ -96,9 +96,21 @@
 </script>
 </head>
 <body>
+  <!-- Page Loader -->
+  <div id="page-loader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Loading</div>
+      <div class="loader-dots">
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+        <div class="loader-dot"></div>
+      </div>
+    </div>
+  </div>
+  
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
+  <script src="/loader.js"></script>
 </body>
 </html>
-<link rel="stylesheet" href="index.css">
-<script src="index.tsx" type="module"></script>

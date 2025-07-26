@@ -14,6 +14,7 @@ import { useDarkMode } from './hooks/useDarkMode';
 import { useScrollProgress, useSectionTransitions } from './hooks/useScrollAnimations';
 import { useAnimationInitializer } from './hooks/useAnimationInitializer';
 import { usePerformanceOptimizer } from './hooks/usePerformanceOptimizer';
+import { usePageLoader } from './hooks/usePageLoader';
 import {
   CodeBracketIcon,
   UserCircleIcon,
@@ -190,6 +191,7 @@ const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const { isDarkMode } = useDarkMode();
   const scrollProgress = useScrollProgress();
+  const { hideLoader } = usePageLoader();
   useSectionTransitions();
   useAnimationInitializer();
   usePerformanceOptimizer();
@@ -205,6 +207,15 @@ const App: React.FC = () => {
     window.addEventListener('scroll', checkScrollTop);
     return () => window.removeEventListener('scroll', checkScrollTop);
   }, [showScrollTop]);
+
+  // Hide page loader when app is fully loaded
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      hideLoader();
+    }, 500); // Small delay to ensure smooth transition
+
+    return () => clearTimeout(timer);
+  }, [hideLoader]);
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
