@@ -32,7 +32,7 @@ const personalInfo = {
   phone: "(316) 461-1206",
   linkedin: "https://www.linkedin.com/in/jaya-vumesh/", 
   github: "https://github.com/Umesh-Tata", 
-  profileImageHero: "https://firebasestorage.googleapis.com/v0/b/img-storage-ef182.firebasestorage.app/o/portofolio%20images%2Fimage%20hero.jpg?alt=media&token=1c05337f-39c1-43c9-9110-61dacbf1e218",
+  // profileImageHero: "https://firebasestorage.googleapis.com/v0/b/img-storage-ef182.firebasestorage.app/o/portofolio%20images%2Fimage%20hero.jpg?alt=media&token=1c05337f-39c1-43c9-9110-61dacbf1e218",
   profileImageAbout: "https://rhianajay13.wordpress.com/wp-content/uploads/2022/04/webdevelopment.png?w=620",
  // profileImageAbout: "https://firebasestorage.googleapis.com/v0/b/img-storage-ef182.firebasestorage.app/o/portofolio%20images%2Fimage%20about.jpg?alt=media&token=5e242e8f-82e2-4c02-b2a9-0d8751fc3158",
   summary: "Full-stack developer with 3+ years of experience designing and deploying scalable web applications using Java, Spring Boot, and ReactJS. Proficient in developing RESTful APIs, integrating SQL and NoSQL databases, and deploying services on AWS and Azure. Skilled in CI/CD (Jenkins, Maven), Docker, and Agile practices. Known for writing clean, testable code and collaborating across cross-functional teams to deliver reliable solutions."
@@ -229,7 +229,7 @@ const App: React.FC = () => {
             id="hero" 
             name={personalInfo.name} 
             tagline={personalInfo.tagline} 
-            profileImageUrl={personalInfo.profileImageHero}
+            profileImageUrl="" // Commented out hero image
         />
         <About 
             id="about" 

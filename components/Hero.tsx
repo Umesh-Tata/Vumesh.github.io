@@ -38,11 +38,11 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
 
       <div className="hero-content relative z-10 p-4">
         {/* The circular profile image with object-cover */}
-        <img 
+        {/* <img 
           src={profileImageUrl}
           alt={name}
           className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover hover-scale"
-        />
+        /> */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
           Hello, I'm <span className="text-accent">{name}</span>
         </h1>
