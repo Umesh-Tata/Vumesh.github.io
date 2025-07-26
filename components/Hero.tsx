@@ -43,17 +43,17 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
           alt={name}
           className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover hover-scale"
         /> */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in-up">
           Hello, I'm <span className="text-accent">{name}</span>
         </h1>
-        <p className="text-xl sm:text-2xl md:text-3xl font-light mb-8 max-w-3xl mx-auto">
+        <p className="text-xl sm:text-2xl md:text-3xl font-light mb-8 max-w-3xl mx-auto animate-fade-in-up animate-stagger-1">
           {tagline}
         </p>
-        <div className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center items-center">
+        <div className="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center items-center animate-fade-in-up animate-stagger-2">
           <a
             href="#projects"
             onClick={scrollToProjects}
-            className="bg-accent text-black hover:bg-yellow-400 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto !text-neutral hover-lift"
+            className="bg-accent text-black hover:bg-yellow-400 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto !text-neutral hover-lift button-hover interactive-element"
           >
             View My Work
           </a>
@@ -63,14 +63,14 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
               e.preventDefault();
               document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-neutral font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto hover-lift"
+            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-neutral font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto hover-lift button-hover interactive-element"
           >
             Get In Touch
           </a>
         </div>
       </div>
-       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full flex justify-center">
-         <svg className="w-8 h-8 text-white opacity-70" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full flex justify-center animate-fade-in-up animate-stagger-3">
+         <svg className="w-8 h-8 text-white opacity-70 hover-scale interactive-element" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
            <path d="M19 9l-7 7-7-7"></path>
          </svg>
        </div>
