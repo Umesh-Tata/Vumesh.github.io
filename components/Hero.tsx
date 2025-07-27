@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHeroEffects } from '../hooks/useHeroEffects';
+import { useMobileTilt } from '../hooks/useMobileTilt';
 import { useDynamicTextContrast } from '../hooks/useDynamicTextContrast';
 import { useWaterRipple } from '../hooks/useWaterRipple';
 
@@ -11,8 +12,20 @@ interface HeroProps {
   heroBgImageUrl?: string; // Optional: For the background image if you decide to use one
 }
 
-const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgImageUrl }) => {
-  const heroRef = useHeroEffects();
+const Hero: React.FC<HeroProps> = ({ id, name, tagline }) => {
+  // Desktop mouse parallax effects (disabled on mobile)
+  const desktopHeroRef = useHeroEffects();
+  
+  // Mobile 3D tilt effects (enabled only on mobile)
+  const { heroRef: mobileHeroRef, isMobile } = useMobileTilt({
+    maxTiltAngle: 20, // Highly noticeable tilt angle
+    sensitivity: 1.2, // Slightly increased sensitivity
+    enableOnMobile: true
+  });
+  
+  // Use the appropriate ref based on device type
+  const heroRef = isMobile ? mobileHeroRef : desktopHeroRef;
+  
   const { getGradientCSS } = useDynamicTextContrast();
   const { createRipple } = useWaterRipple({
     duration: 800,

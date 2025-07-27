@@ -250,6 +250,45 @@
 
 /* ===== ENHANCED HERO ANIMATIONS ===== */
 
+/* Mobile 3D Tilt Effects */
+.mobile-tilt-enabled {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.mobile-tilt-enabled .hero-gradient {
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d;
+}
+
+.mobile-tilt-enabled .hero-parallax {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.mobile-tilt-enabled .hero-particles {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* Ensure particles remain visible and animated on mobile */
+.mobile-tilt-enabled .hero-particle {
+  animation-play-state: running !important;
+  opacity: 1 !important;
+}
+
+/* Disable mouse parallax on mobile devices */
+.mobile-device .cursor-glow,
+.mobile-device .cursor-trail {
+  display: none !important;
+}
+
+.mobile-device .hero-parallax {
+  transform: none !important;
+  transition: none !important;
+}
+
 /* Floating particles animation */
 @keyframes float {
   0%, 100% {

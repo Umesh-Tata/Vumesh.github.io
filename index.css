@@ -37,6 +37,9 @@
   animation: gradientAnimation 12s ease infinite;
   position: relative;
   overflow: hidden;
+  /* Support for 3D transforms on mobile */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 /* Enhanced parallax layer with more visible effects */
@@ -118,6 +121,9 @@
     transparent 60%,
     rgba(0, 0, 0, 0.15) 100%
   );
+  /* Support for 3D transforms on mobile */
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
   pointer-events: none;
   z-index: 2;
 }
@@ -293,6 +299,29 @@
       0 0 80px rgba(99, 102, 241, 0.03),
       0 0 120px rgba(168, 85, 247, 0.015);
   }
+  
+  /* Mobile 3D tilt effect optimizations */
+  .mobile-tilt-enabled .hero-gradient {
+    transform-origin: center center;
+    will-change: transform;
+  }
+  
+  .mobile-tilt-enabled .hero-parallax {
+    transform-origin: center center;
+    will-change: transform;
+  }
+  
+  .mobile-tilt-enabled .hero-particles {
+    transform-origin: center center;
+    will-change: transform;
+  }
+  
+  /* Ensure particles remain visible on mobile */
+  .mobile-tilt-enabled .hero-particle {
+    animation-play-state: running !important;
+    opacity: 1 !important;
+    will-change: transform;
+  }
 }
 
 /* Performance optimization */
@@ -311,6 +340,14 @@
   /* Hide cursor glow on reduced motion */
   .cursor-glow {
     display: none !important;
+  }
+  
+  /* Disable mobile tilt effects for users with reduced motion preference */
+  .mobile-tilt-enabled .hero-gradient,
+  .mobile-tilt-enabled .hero-parallax,
+  .mobile-tilt-enabled .hero-particles {
+    transform: none !important;
+    transition: none !important;
   }
 }
 

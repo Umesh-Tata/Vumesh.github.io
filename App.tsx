@@ -189,7 +189,7 @@ const projectsData: Project[] = [
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [personalInfo, setPersonalInfo] = useState(initialPersonalInfo);
-  const { isDarkMode } = useDarkMode();
+  const { isDarkMode: _isDarkMode } = useDarkMode();
   const scrollProgress = useScrollProgress();
   useAnimationInitializer();
   usePerformanceOptimizer();

@@ -29,7 +29,7 @@ export const useDynamicTextContrast = () => {
     ]
   });
 
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | undefined>(undefined);
   const timeRef = useRef(0);
 
   useEffect(() => {

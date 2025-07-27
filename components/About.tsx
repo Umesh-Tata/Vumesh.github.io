@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Section from './Section';
-import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'; // Assuming you might want icons
+import { EnvelopeIcon } from '@heroicons/react/24/outline'; // Assuming you might want icons
 
 // A simple PhoneIcon component if not using heroicons
 const DefaultPhoneIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
