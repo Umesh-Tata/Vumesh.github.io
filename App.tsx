@@ -9,6 +9,7 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import FixedFooter from './components/FixedFooter';
 import { Project, Skill, TimelineEvent, NavItem } from './types';
 import { useDarkMode } from './hooks/useDarkMode';
 import { useScrollProgress, useSectionTransitions } from './hooks/useScrollAnimations';
@@ -273,10 +274,11 @@ const App: React.FC = () => {
         linkedinUrl={personalInfo.linkedin}
         githubUrl={personalInfo.github}
       />
+      <FixedFooter name={personalInfo.name} />
       {showScrollTop && (
         <button
           onClick={scrollTop}
-          className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg z-50 animate-fade-in-up"
+          className="fixed bottom-16 right-8 p-3 bg-primary text-white rounded-full shadow-lg z-50 animate-fade-in-up"
           aria-label="Scroll to top"
         >
           <ArrowUpIcon className="w-6 h-6" />

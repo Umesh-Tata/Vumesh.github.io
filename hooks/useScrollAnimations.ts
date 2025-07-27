@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from 'react';
 
-// Enhanced scroll animations with Intersection Observer
+// Enhanced scroll animations with Intersection Observer - Optimized for instant reveal
 export const useScrollAnimations = () => {
   const elementRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -14,8 +14,8 @@ export const useScrollAnimations = () => {
         }
       },
       {
-        threshold: 0.1,
-        rootMargin: '-50px 0px'
+        threshold: 0.05,
+        rootMargin: '-20px 0px'
       }
     );
 
@@ -33,7 +33,7 @@ export const useScrollAnimations = () => {
   return { elementRef, isVisible };
 };
 
-// Multi-element scroll animations
+// Multi-element scroll animations - Optimized for instant reveal
 export const useMultiScrollAnimations = () => {
   const [animatedElements, setAnimatedElements] = useState<Set<Element>>(new Set());
 
@@ -48,8 +48,8 @@ export const useMultiScrollAnimations = () => {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '-20px 0px'
+        threshold: 0.05,
+        rootMargin: '-10px 0px'
       }
     );
 
@@ -63,7 +63,7 @@ export const useMultiScrollAnimations = () => {
   return { animatedElements, observeElements };
 };
 
-// Section transitions with fade-in effect
+// Section transitions with fade-in effect - Optimized for instant reveal
 export const useSectionTransitions = () => {
   useEffect(() => {
     const sections = document.querySelectorAll('section[id], .section-transition');
@@ -82,8 +82,8 @@ export const useSectionTransitions = () => {
         });
       },
       {
-        threshold: 0.15,
-        rootMargin: '-80px 0px -80px 0px'
+        threshold: 0.08,
+        rootMargin: '-30px 0px -30px 0px'
       }
     );
 

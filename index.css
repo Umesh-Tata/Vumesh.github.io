@@ -111,3 +111,50 @@
   background-color: rgb(234 179 8) !important; /* Force light mode yellow-500 */
   color: rgb(51 65 85) !important; /* Force light mode neutral text color */
 }
+
+/* ===== FIXED FOOTER STYLES ===== */
+
+#fixed-site-info {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+#fixed-site-info:hover {
+  background-color: rgba(30, 41, 59, 0.95);
+}
+
+.dark #fixed-site-info:hover {
+  background-color: rgba(15, 23, 42, 0.95);
+}
+
+/* Ensure content doesn't get hidden behind fixed footer */
+main {
+  padding-bottom: 3rem;
+}
+
+/* Responsive adjustments for fixed footer */
+@media (max-width: 768px) {
+  #fixed-site-info {
+    padding: 0.5rem 1rem;
+  }
+  
+  #fixed-site-info p {
+    font-size: 0.75rem;
+  }
+  
+  main {
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #fixed-site-info {
+    padding: 0.375rem 0.75rem;
+  }
+  
+  #fixed-site-info p {
+    font-size: 0.7rem;
+  }
+}

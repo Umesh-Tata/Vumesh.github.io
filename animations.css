@@ -172,61 +172,62 @@
 
 /* ===== ANIMATION CLASSES ===== */
 
-/* Base animation classes */
+/* Base animation classes - Optimized for instant content reveal */
 .animate-fade-in-up {
-  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeInUp 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .animate-fade-in-down {
-  animation: fadeInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeInDown 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .animate-fade-in-left {
-  animation: fadeInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeInLeft 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .animate-fade-in-right {
-  animation: fadeInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeInRight 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .animate-fade-in-scale {
-  animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: fadeInScale 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .animate-slide-in-up {
-  animation: slideInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slideInUp 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .animate-slide-in-down {
-  animation: slideInDown 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slideInDown 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .animate-slide-in-left {
-  animation: slideInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slideInLeft 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .animate-slide-in-right {
-  animation: slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: slideInRight 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* Staggered animations */
-.animate-stagger-1 { animation-delay: 0.1s; }
-.animate-stagger-2 { animation-delay: 0.2s; }
-.animate-stagger-3 { animation-delay: 0.3s; }
-.animate-stagger-4 { animation-delay: 0.4s; }
-.animate-stagger-5 { animation-delay: 0.5s; }
+/* Staggered animations - Optimized for instant reveal */
+.animate-stagger-1 { animation-delay: 0.02s; }
+.animate-stagger-2 { animation-delay: 0.04s; }
+.animate-stagger-3 { animation-delay: 0.06s; }
+.animate-stagger-4 { animation-delay: 0.08s; }
+.animate-stagger-5 { animation-delay: 0.1s; }
 
 /* ===== ENHANCED SECTION TRANSITION EFFECTS ===== */
 
-/* Improved section transitions */
+/* Improved section transitions - Optimized for instant reveal */
 .section-transition {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(20px);
+  transition: opacity 0.1s ease-out, transform 0.1s ease-out;
 }
 
 .section-transition.section-enter {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(20px);
 }
 
 .section-transition.section-visible {
@@ -252,8 +253,8 @@
 }
 
 .skill-bar-fill {
-  animation: skillBarFill 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  animation-delay: 0.5s;
+  animation: skillBarFill 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: 0.05s;
 }
 
 /* ===== LOADING ANIMATIONS ===== */
@@ -290,18 +291,18 @@
 
 /* ===== UTILITY CLASSES ===== */
 
-/* Animation delays */
+/* Animation delays - Optimized for instant reveal */
+.delay-10 { animation-delay: 0.01s; }
+.delay-20 { animation-delay: 0.02s; }
+.delay-30 { animation-delay: 0.03s; }
+.delay-50 { animation-delay: 0.05s; }
 .delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
 
-/* Animation durations */
+/* Animation durations - Optimized for instant reveal */
+.duration-100 { animation-duration: 0.1s; }
+.duration-150 { animation-duration: 0.15s; }
+.duration-200 { animation-duration: 0.2s; }
 .duration-300 { animation-duration: 0.3s; }
-.duration-500 { animation-duration: 0.5s; }
-.duration-700 { animation-duration: 0.7s; }
-.duration-1000 { animation-duration: 1s; }
 
 /* Easing functions */
 .ease-out { animation-timing-function: ease-out; }
@@ -316,7 +317,7 @@
   .animate-fade-in-down,
   .animate-fade-in-left,
   .animate-fade-in-right {
-    animation-duration: 0.6s;
+    animation-duration: 0.12s;
   }
 }
 
@@ -391,6 +392,6 @@
   .animate-slide-in-down,
   .animate-slide-in-left,
   .animate-slide-in-right {
-    animation-duration: 0.4s;
+    animation-duration: 0.1s;
   }
 }
