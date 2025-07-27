@@ -25,6 +25,20 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
       {/* CRITICAL: Parallax background layer - DO NOT REMOVE! This enables cursor-following movement */}
       <div className="hero-parallax"></div>
       
+      {/* Enhanced: Floating particles for dynamic effect */}
+      <div className="hero-particles">
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+      </div>
+      
       {/* Optional: Background image for the hero section */}
       {/* {heroBgImageUrl && (
         <div className="absolute inset-0 w-full h-full">

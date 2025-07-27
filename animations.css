@@ -247,3 +247,192 @@
     transform: none !important;
   }
 }
+
+/* ===== ENHANCED HERO ANIMATIONS ===== */
+
+/* Floating particles animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+@keyframes float2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-15px) rotate(-180deg) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Pulse animation for enhanced glow effects */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Enhanced gradient shift animation */
+@keyframes enhancedGradientShift {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 100% 50%;
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    background-position: 100% 100%;
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    background-position: 0% 100%;
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Cursor trail effect */
+@keyframes cursorTrail {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Enhanced hero gradient with additional effects */
+.hero-gradient {
+  animation: enhancedGradientShift 20s ease infinite;
+}
+
+/* Floating particles container */
+.hero-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+/* Individual particle styles */
+.hero-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-particle:nth-child(2n) {
+  animation: float2 8s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.hero-particle:nth-child(3n) {
+  animation: float 7s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* Position particles randomly */
+.hero-particle:nth-child(1) { left: 10%; top: 20%; }
+.hero-particle:nth-child(2) { left: 20%; top: 60%; }
+.hero-particle:nth-child(3) { left: 30%; top: 40%; }
+.hero-particle:nth-child(4) { left: 40%; top: 80%; }
+.hero-particle:nth-child(5) { left: 50%; top: 30%; }
+.hero-particle:nth-child(6) { left: 60%; top: 70%; }
+.hero-particle:nth-child(7) { left: 70%; top: 50%; }
+.hero-particle:nth-child(8) { left: 80%; top: 25%; }
+.hero-particle:nth-child(9) { left: 90%; top: 65%; }
+.hero-particle:nth-child(10) { left: 15%; top: 85%; }
+
+/* Enhanced cursor glow with pulse effect */
+.cursor-glow {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Cursor trail elements */
+.cursor-trail {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.8), transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4;
+  animation: cursorTrail 1s ease-out forwards;
+}
+
+/* Enhanced parallax with additional depth */
+.hero-parallax {
+  filter: contrast(1.1) brightness(1.05);
+}
+
+/* Mobile optimizations for animations */
+@media (max-width: 768px) {
+  .hero-particle {
+    width: 3px;
+    height: 3px;
+  }
+  
+  .hero-gradient {
+    animation-duration: 25s;
+  }
+  
+  .cursor-glow {
+    animation: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-gradient {
+    animation: none;
+  }
+  
+  .hero-particle {
+    animation: none;
+    opacity: 0.3;
+  }
+  
+  .cursor-glow {
+    animation: none;
+  }
+  
+  .cursor-trail {
+    display: none;
+  }
+}
+
+/* Touch device optimizations */
+.touch-device .hero-particle {
+  display: none;
+}
+
+.touch-device .cursor-trail {
+  display: none;
+}
