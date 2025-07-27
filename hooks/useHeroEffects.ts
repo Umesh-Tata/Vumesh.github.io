@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Hero Effects Hook - IMPORTANT: Keep parallax effect active!
- * This hook provides cursor-based parallax movement for the hero section.
- * DO NOT disable or remove this effect without explicit user request.
+ * Hero Effects Hook - ENHANCED: Added prominent cursor glow, trail effects, and increased dynamic effects
+ * This hook provides cursor-based parallax movement, glow effects, and trail effects for the hero section.
  */
 export const useHeroEffects = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -11,10 +10,61 @@ export const useHeroEffects = () => {
   const mousePositionRef = useRef({ x: 0, y: 0 });
   const currentPositionRef = useRef({ x: 0, y: 0 });
   const isMovingRef = useRef(false);
+  const cursorGlowRef = useRef<HTMLDivElement>(null);
+  const trailElementsRef = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const heroElement = heroRef.current;
     if (!heroElement) return;
+
+    // Create cursor glow element if it doesn't exist
+    if (!cursorGlowRef.current) {
+      const glowElement = document.createElement('div');
+      glowElement.className = 'cursor-glow';
+      glowElement.style.cssText = `
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(99, 102, 241, 0.3) 40%, rgba(168, 85, 247, 0.2) 60%, transparent 80%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 5;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s ease;
+        opacity: 0;
+        filter: blur(1px);
+        box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+      `;
+      heroElement.appendChild(glowElement);
+      cursorGlowRef.current = glowElement;
+    }
+
+    // Create cursor trail elements
+    const createTrailElement = () => {
+      const trailElement = document.createElement('div');
+      trailElement.className = 'cursor-trail';
+      trailElement.style.cssText = `
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.8), transparent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 4;
+        animation: cursorTrail 1s ease-out forwards;
+      `;
+      heroElement.appendChild(trailElement);
+      
+      // Remove trail element after animation
+      setTimeout(() => {
+        if (trailElement.parentNode) {
+          trailElement.parentNode.removeChild(trailElement);
+        }
+        trailElementsRef.current = trailElementsRef.current.filter(el => el !== trailElement);
+      }, 1000);
+      
+      return trailElement;
+    };
 
     // Throttle function for performance
     const throttle = (func: Function, delay: number) => {
@@ -27,31 +77,47 @@ export const useHeroEffects = () => {
       };
     };
 
-    // Update cursor position for gradient effect
+    // Enhanced cursor position update with glow and trail effects
     const updateCursorPosition = throttle((e: MouseEvent) => {
       const rect = heroElement.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 100;
       const y = ((e.clientY - rect.top) / rect.height) * 100;
 
+      // Update gradient position
       heroElement.style.setProperty('--mouse-x', `${x}%`);
       heroElement.style.setProperty('--mouse-y', `${y}%`);
 
-      // Store mouse position for parallax
+      // Update cursor glow position and visibility
+      if (cursorGlowRef.current) {
+        cursorGlowRef.current.style.left = `${e.clientX - rect.left}px`;
+        cursorGlowRef.current.style.top = `${e.clientY - rect.top}px`;
+        cursorGlowRef.current.style.opacity = '1';
+      }
+
+      // Create trail effect (limit to 3 trail elements for performance)
+      if (trailElementsRef.current.length < 3) {
+        const trailElement = createTrailElement();
+        trailElement.style.left = `${e.clientX - rect.left}px`;
+        trailElement.style.top = `${e.clientY - rect.top}px`;
+        trailElementsRef.current.push(trailElement);
+      }
+
+      // Store mouse position for enhanced parallax
       mousePositionRef.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
       mousePositionRef.current.y = (e.clientY / window.innerHeight - 0.5) * 2;
       isMovingRef.current = true;
     }, 16); // ~60fps
 
-    // CRITICAL: Smooth parallax animation - Keep this effect active!
+    // ENHANCED: More prominent parallax animation with increased visibility
     const animateParallax = () => {
       if (isMovingRef.current) {
-        // Smooth interpolation
-        currentPositionRef.current.x += (mousePositionRef.current.x - currentPositionRef.current.x) * 0.1;
-        currentPositionRef.current.y += (mousePositionRef.current.y - currentPositionRef.current.y) * 0.1;
+        // Smooth interpolation with increased responsiveness
+        currentPositionRef.current.x += (mousePositionRef.current.x - currentPositionRef.current.x) * 0.15;
+        currentPositionRef.current.y += (mousePositionRef.current.y - currentPositionRef.current.y) * 0.15;
 
-        // CRITICAL: Apply parallax transform - This creates the cursor-following effect
-        const parallaxX = currentPositionRef.current.x * 30; // Increased to 30px max movement for more visibility
-        const parallaxY = currentPositionRef.current.y * 30;
+        // ENHANCED: Increased parallax movement for more visibility (50px max movement)
+        const parallaxX = currentPositionRef.current.x * 50;
+        const parallaxY = currentPositionRef.current.y * 50;
 
         heroElement.style.setProperty('--parallax-x', `${parallaxX}px`);
         heroElement.style.setProperty('--parallax-y', `${parallaxY}px`);
@@ -68,10 +134,24 @@ export const useHeroEffects = () => {
       animationFrameRef.current = requestAnimationFrame(animateParallax);
     };
 
-    // Reset on mouse leave
+    // Enhanced mouse leave handling
     const handleMouseLeave = () => {
       heroElement.style.setProperty('--mouse-x', '50%');
       heroElement.style.setProperty('--mouse-y', '50%');
+      
+      // Hide cursor glow
+      if (cursorGlowRef.current) {
+        cursorGlowRef.current.style.opacity = '0';
+      }
+      
+      // Clear trail elements
+      trailElementsRef.current.forEach(element => {
+        if (element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      });
+      trailElementsRef.current = [];
+      
       mousePositionRef.current = { x: 0, y: 0 };
       isMovingRef.current = true;
     };
@@ -87,6 +167,10 @@ export const useHeroEffects = () => {
     const isTouchDevice = 'ontouchstart' in window;
     if (isTouchDevice) {
       heroElement.classList.add('touch-device');
+      // Hide cursor glow and trail effects on touch devices
+      if (cursorGlowRef.current) {
+        cursorGlowRef.current.style.display = 'none';
+      }
     }
 
     // Cleanup
@@ -96,6 +180,16 @@ export const useHeroEffects = () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      // Remove cursor glow element
+      if (cursorGlowRef.current) {
+        cursorGlowRef.current.remove();
+      }
+      // Remove trail elements
+      trailElementsRef.current.forEach(element => {
+        if (element.parentNode) {
+          element.parentNode.removeChild(element);
+        }
+      });
     };
   }, []);
 
