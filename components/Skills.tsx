@@ -10,7 +10,7 @@ interface SkillsProps {
 }
 
 const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
-  <div className="bg-base-100 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center border border-gray-200 dark:border-gray-700 hover-lift skill-item-hover interactive-element">
+  <div className="bg-base-100 p-4 rounded-lg shadow-lg flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
     {/* Fix: Ensure skill.icon is a valid React element and cast to a specific type for cloneElement.
         This resolves a TypeScript error where 'className' was not recognized on 'Partial<unknown> & Attributes'. */}
     {skill.icon && React.isValidElement(skill.icon) && (

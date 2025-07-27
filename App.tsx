@@ -276,7 +276,7 @@ const App: React.FC = () => {
       {showScrollTop && (
         <button
           onClick={scrollTop}
-          className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg hover:bg-sky-700 transition-colors duration-300 z-50 animate-fade-in-up hover-lift hover-glow"
+          className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg z-50 animate-fade-in-up"
           aria-label="Scroll to top"
         >
           <ArrowUpIcon className="w-6 h-6" />
