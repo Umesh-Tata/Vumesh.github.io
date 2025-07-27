@@ -162,7 +162,63 @@
   }
 }
 
-/* Dynamic text gradient for the name element */
+/* Dynamic text color that adapts to background gradient */
+.hero-name-dynamic {
+  color: var(--dynamic-text-color, #ffffff);
+  font-weight: inherit;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 
+    0 0 10px var(--dynamic-shadow-color, rgba(0, 0, 0, 0.8)),
+    0 0 20px var(--dynamic-shadow-color, rgba(0, 0, 0, 0.6)),
+    0 0 30px var(--dynamic-shadow-color, rgba(0, 0, 0, 0.4));
+}
+
+/* Enhanced text shadow for better readability against varying backgrounds */
+.hero-name-dynamic::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  color: var(--dynamic-text-color, #ffffff);
+  text-shadow: 
+    0 0 15px var(--dynamic-shadow-color, rgba(0, 0, 0, 0.8)),
+    0 0 25px var(--dynamic-shadow-color, rgba(0, 0, 0, 0.6)),
+    0 0 35px var(--dynamic-shadow-color, rgba(0, 0, 0, 0.4));
+  filter: blur(1px);
+  opacity: 0.8;
+}
+
+/* Hover effect for enhanced interactivity */
+.hero-name-dynamic:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* Additional glow effect for extra visual appeal */
+.hero-name-dynamic::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    var(--dynamic-text-color, #ffffff) 0%,
+    transparent 70%
+  );
+  opacity: 0.1;
+  z-index: -2;
+  filter: blur(8px);
+  transition: opacity 0.3s ease;
+}
+
+/* Dynamic text gradient for the name element (keeping for fallback) */
 .hero-name-gradient {
   background: var(--hero-name-primary-gradient, linear-gradient(
     -45deg,
@@ -239,8 +295,20 @@
   animation: textGradientAnimation 8s ease infinite;
 }
 
-/* Mobile optimizations for the text gradient */
+/* Mobile optimizations for the dynamic text */
 @media (max-width: 768px) {
+  .hero-name-dynamic {
+    transition: color 0.2s ease, text-shadow 0.2s ease; /* Faster transitions on mobile */
+  }
+  
+  .hero-name-dynamic::before {
+    filter: blur(0.5px); /* Less blur on mobile for better performance */
+  }
+  
+  .hero-name-dynamic::after {
+    filter: blur(4px); /* Less blur on mobile */
+  }
+  
   .hero-name-gradient {
     animation-duration: 10s; /* Slightly slower on mobile for better performance */
   }
@@ -258,6 +326,17 @@
 
 /* Reduced motion support for the text gradient */
 @media (prefers-reduced-motion: reduce) {
+  .hero-name-dynamic,
+  .hero-name-dynamic::before,
+  .hero-name-dynamic::after {
+    transition: none !important;
+  }
+  
+  .hero-name-dynamic:hover {
+    transform: none !important;
+    filter: none !important;
+  }
+  
   .hero-name-gradient,
   .hero-name-gradient::before,
   .hero-name-gradient::after {

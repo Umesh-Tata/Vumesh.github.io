@@ -1,94 +1,177 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
-interface GradientColors {
-  primary: string[];
-  shadow: string[];
+interface TextContrastState {
+  textColor: string;
+  shadowColor: string;
+  isLight: boolean;
 }
 
 export const useDynamicTextContrast = () => {
-  const [gradientColors, setGradientColors] = useState<GradientColors>({
-    primary: [
-      '#fbbf24',  // amber-400 - light gold
-      '#f59e0b',  // amber-500 - gold
-      '#f97316',  // orange-500 - orange
-      '#fb7185',  // rose-400 - soft pink
-      '#e879f9',  // fuchsia-400 - light purple
-      '#a78bfa',  // violet-400 - violet
-      '#93c5fd',  // sky-300 - light blue
-      '#fbbf24'   // back to amber-400
-    ],
-    shadow: [
-      'rgba(251, 191, 36, 0.8)',  // amber-400 with opacity
-      'rgba(245, 158, 11, 0.8)',  // amber-500 with opacity
-      'rgba(249, 115, 22, 0.8)',  // orange-500 with opacity
-      'rgba(251, 113, 133, 0.8)', // rose-400 with opacity
-      'rgba(232, 121, 249, 0.8)', // fuchsia-400 with opacity
-      'rgba(167, 139, 250, 0.8)', // violet-400 with opacity
-      'rgba(147, 197, 253, 0.8)', // sky-300 with opacity
-      'rgba(251, 191, 36, 0.8)'   // back to amber-400 with opacity
-    ]
+  const [textContrast, setTextContrast] = useState<TextContrastState>({
+    textColor: '#ffffff',
+    shadowColor: 'rgba(0, 0, 0, 0.8)',
+    isLight: false
   });
 
   const animationRef = useRef<number>();
   const timeRef = useRef(0);
 
+  // Function to calculate relative luminance of a color
+  const getLuminance = useCallback((r: number, g: number, b: number): number => {
+    const [rs, gs, bs] = [r / 255, g / 255, b / 255].map(c => {
+      if (c <= 0.03928) return c / 12.92;
+      return Math.pow((c + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+  }, []);
+
+  // Function to get background color at a specific position
+  const getBackgroundColorAtPosition = useCallback((progress: number): { r: number, g: number, b: number } => {
+    // Define the background gradient colors (matching the hero-gradient in index.css)
+    const gradientColors = [
+      { r: 59, g: 130, b: 246 },   // #3b82f6 - blue
+      { r: 99, g: 102, b: 241 },   // #6366f1 - indigo
+      { r: 139, g: 92, b: 246 },   // #8b5cf6 - violet
+      { r: 168, g: 85, b: 247 },   // #a855f7 - purple
+      { r: 236, g: 72, b: 153 },   // #ec4899 - pink
+      { r: 139, g: 92, b: 246 },   // #8b5cf6 - violet
+      { r: 99, g: 102, b: 241 },   // #6366f1 - indigo
+      { r: 59, g: 130, b: 246 }    // #3b82f6 - blue
+    ];
+
+    // Calculate which colors to interpolate between
+    const totalColors = gradientColors.length;
+    const colorIndex = (progress * totalColors) % totalColors;
+    const currentIndex = Math.floor(colorIndex);
+    const nextIndex = (currentIndex + 1) % totalColors;
+    const interpolationFactor = colorIndex - currentIndex;
+
+    const currentColor = gradientColors[currentIndex];
+    const nextColor = gradientColors[nextIndex];
+
+    // Interpolate between the two colors
+    const r = Math.round(currentColor.r + (nextColor.r - currentColor.r) * interpolationFactor);
+    const g = Math.round(currentColor.g + (nextColor.g - currentColor.g) * interpolationFactor);
+    const b = Math.round(currentColor.b + (nextColor.b - currentColor.b) * interpolationFactor);
+
+    return { r, g, b };
+  }, []);
+
+  // Function to determine optimal text color based on background
+  const getOptimalTextColor = useCallback((backgroundColor: { r: number, g: number, b: number }): TextContrastState => {
+    const luminance = getLuminance(backgroundColor.r, backgroundColor.g, backgroundColor.b);
+    
+    // Calculate HSL values for more sophisticated color adaptation
+    const max = Math.max(backgroundColor.r, backgroundColor.g, backgroundColor.b);
+    const min = Math.min(backgroundColor.r, backgroundColor.g, backgroundColor.b);
+    const delta = max - min;
+    
+    let hue = 0;
+    if (delta !== 0) {
+      if (max === backgroundColor.r) {
+        hue = ((backgroundColor.g - backgroundColor.b) / delta) % 6;
+      } else if (max === backgroundColor.g) {
+        hue = (backgroundColor.b - backgroundColor.r) / delta + 2;
+      } else {
+        hue = (backgroundColor.r - backgroundColor.g) / delta + 4;
+      }
+      hue = Math.round(hue * 60);
+      if (hue < 0) hue += 360;
+    }
+    
+    // Determine if background is light or dark
+    const isLight = luminance > 0.5;
+    
+    if (isLight) {
+      // For light backgrounds, use dark text with subtle color tinting
+      let textColor = '#1a1a1a'; // Default dark gray
+      
+      // Add subtle color tinting based on background hue
+      if (hue >= 0 && hue < 60) { // Red to yellow
+        textColor = '#2d1b0e'; // Warm dark brown
+      } else if (hue >= 60 && hue < 120) { // Yellow to green
+        textColor = '#1b2d1b'; // Dark green-tinted
+      } else if (hue >= 120 && hue < 180) { // Green to cyan
+        textColor = '#1b2d2d'; // Dark cyan-tinted
+      } else if (hue >= 180 && hue < 240) { // Cyan to blue
+        textColor = '#1b1b2d'; // Dark blue-tinted
+      } else if (hue >= 240 && hue < 300) { // Blue to magenta
+        textColor = '#2d1b2d'; // Dark purple-tinted
+      } else { // Magenta to red
+        textColor = '#2d1b1b'; // Dark red-tinted
+      }
+      
+      return {
+        textColor,
+        shadowColor: `rgba(${255 - backgroundColor.r}, ${255 - backgroundColor.g}, ${255 - backgroundColor.b}, 0.8)`, // Inverted background color shadow
+        isLight: true
+      };
+    } else {
+      // For dark backgrounds, use light text with subtle color tinting
+      let textColor = '#ffffff'; // Default white
+      
+      // Add subtle color tinting based on background hue
+      if (hue >= 0 && hue < 60) { // Red to yellow
+        textColor = '#fff8f0'; // Warm white
+      } else if (hue >= 60 && hue < 120) { // Yellow to green
+        textColor = '#f0fff0'; // Cool white with green tint
+      } else if (hue >= 120 && hue < 180) { // Green to cyan
+        textColor = '#f0ffff'; // Cyan-tinted white
+      } else if (hue >= 180 && hue < 240) { // Cyan to blue
+        textColor = '#f0f0ff'; // Blue-tinted white
+      } else if (hue >= 240 && hue < 300) { // Blue to magenta
+        textColor = '#fff0ff'; // Purple-tinted white
+      } else { // Magenta to red
+        textColor = '#fff0f0'; // Pink-tinted white
+      }
+      
+      return {
+        textColor,
+        shadowColor: `rgba(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b}, 0.8)`, // Background color shadow
+        isLight: false
+      };
+    }
+  }, [getLuminance]);
+
   useEffect(() => {
-    const updateGradientColors = (time: number) => {
+    const updateTextContrast = (time: number) => {
       timeRef.current = time;
       
       // Calculate animation progress (0 to 1) based on time
-      const progress = (time % 8000) / 8000; // 8 second cycle
+      // Match the 12-second cycle from the hero gradient animation
+      const progress = (time % 12000) / 12000;
       
-      // Create dynamic color variations based on animation progress
-      const dynamicColors = {
-        primary: [
-          `hsl(${45 + progress * 30}, 100%, 60%)`,   // Dynamic gold
-          `hsl(${35 + progress * 20}, 100%, 55%)`,   // Dynamic orange
-          `hsl(${25 + progress * 15}, 100%, 50%)`,   // Dynamic red-orange
-          `hsl(${340 + progress * 20}, 100%, 75%)`,  // Dynamic pink
-          `hsl(${280 + progress * 30}, 100%, 75%)`,  // Dynamic purple
-          `hsl(${260 + progress * 20}, 100%, 80%)`,  // Dynamic violet
-          `hsl(${210 + progress * 30}, 100%, 80%)`,  // Dynamic blue
-          `hsl(${45 + progress * 30}, 100%, 60%)`    // Back to dynamic gold
-        ],
-        shadow: [
-          `hsla(${45 + progress * 30}, 100%, 60%, 0.8)`,   // Dynamic gold with opacity
-          `hsla(${35 + progress * 20}, 100%, 55%, 0.8)`,   // Dynamic orange with opacity
-          `hsla(${25 + progress * 15}, 100%, 50%, 0.8)`,   // Dynamic red-orange with opacity
-          `hsla(${340 + progress * 20}, 100%, 75%, 0.8)`,  // Dynamic pink with opacity
-          `hsla(${280 + progress * 30}, 100%, 75%, 0.8)`,  // Dynamic purple with opacity
-          `hsla(${260 + progress * 20}, 100%, 80%, 0.8)`,  // Dynamic violet with opacity
-          `hsla(${210 + progress * 30}, 100%, 80%, 0.8)`,  // Dynamic blue with opacity
-          `hsla(${45 + progress * 30}, 100%, 60%, 0.8)`    // Back to dynamic gold with opacity
-        ]
-      };
-
-      setGradientColors(dynamicColors);
-      animationRef.current = requestAnimationFrame(updateGradientColors);
+      // Get the current background color at this animation point
+      const backgroundColor = getBackgroundColorAtPosition(progress);
+      
+      // Determine optimal text color
+      const optimalColors = getOptimalTextColor(backgroundColor);
+      
+      setTextContrast(optimalColors);
+      
+      animationRef.current = requestAnimationFrame(updateTextContrast);
     };
 
-    animationRef.current = requestAnimationFrame(updateGradientColors);
+    animationRef.current = requestAnimationFrame(updateTextContrast);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [getBackgroundColorAtPosition, getOptimalTextColor]);
 
-  // Function to get CSS custom properties for the gradient
-  const getGradientCSS = () => {
-    const primaryGradient = `linear-gradient(-45deg, ${gradientColors.primary.join(', ')})`;
-    const shadowGradient = `linear-gradient(-45deg, ${gradientColors.shadow.join(', ')})`;
-    
+  // Function to get CSS custom properties for the dynamic text color
+  const getDynamicTextCSS = useCallback(() => {
     return {
-      '--hero-name-primary-gradient': primaryGradient,
-      '--hero-name-shadow-gradient': shadowGradient,
+      '--dynamic-text-color': textContrast.textColor,
+      '--dynamic-shadow-color': textContrast.shadowColor,
+      '--dynamic-text-is-light': textContrast.isLight ? '1' : '0',
     } as React.CSSProperties;
-  };
+  }, [textContrast]);
 
   return {
-    gradientColors,
-    getGradientCSS,
+    textContrast,
+    getDynamicTextCSS,
   };
 };

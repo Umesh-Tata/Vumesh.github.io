@@ -9,6 +9,7 @@ import Experience from './components/Experience';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+
 import { Project, Skill, TimelineEvent, NavItem } from './types';
 import { useDarkMode } from './hooks/useDarkMode';
 import { useScrollProgress } from './hooks/useScrollAnimations';
