@@ -8,24 +8,24 @@ interface GradientColors {
 export const useDynamicTextContrast = () => {
   const [gradientColors, setGradientColors] = useState<GradientColors>({
     primary: [
-      '#fbbf24',  // amber-400 - light gold
-      '#f59e0b',  // amber-500 - gold
-      '#f97316',  // orange-500 - orange
-      '#fb7185',  // rose-400 - soft pink
-      '#e879f9',  // fuchsia-400 - light purple
-      '#a78bfa',  // violet-400 - violet
-      '#93c5fd',  // sky-300 - light blue
-      '#fbbf24'   // back to amber-400
+      '#e0e7ff',  // very light indigo
+      '#f3e8ff',  // very light purple
+      '#fef3c7',  // very light amber
+      '#dbeafe',  // very light blue
+      '#f0f9ff',  // very light sky
+      '#f5f3ff',  // very light violet
+      '#fdf2f8',  // very light pink
+      '#e0e7ff'   // back to very light indigo
     ],
     shadow: [
-      'rgba(251, 191, 36, 0.8)',  // amber-400 with opacity
-      'rgba(245, 158, 11, 0.8)',  // amber-500 with opacity
-      'rgba(249, 115, 22, 0.8)',  // orange-500 with opacity
-      'rgba(251, 113, 133, 0.8)', // rose-400 with opacity
-      'rgba(232, 121, 249, 0.8)', // fuchsia-400 with opacity
-      'rgba(167, 139, 250, 0.8)', // violet-400 with opacity
-      'rgba(147, 197, 253, 0.8)', // sky-300 with opacity
-      'rgba(251, 191, 36, 0.8)'   // back to amber-400 with opacity
+      'rgba(224, 231, 255, 0.9)',  // very light indigo with opacity
+      'rgba(243, 232, 255, 0.9)',  // very light purple with opacity
+      'rgba(254, 243, 199, 0.9)',  // very light amber with opacity
+      'rgba(219, 234, 254, 0.9)',  // very light blue with opacity
+      'rgba(240, 249, 255, 0.9)',  // very light sky with opacity
+      'rgba(245, 243, 255, 0.9)',  // very light violet with opacity
+      'rgba(253, 242, 248, 0.9)',  // very light pink with opacity
+      'rgba(224, 231, 255, 0.9)'   // back to very light indigo with opacity
     ]
   });
 
@@ -42,24 +42,24 @@ export const useDynamicTextContrast = () => {
       // Create dynamic color variations based on animation progress
       const dynamicColors = {
         primary: [
-          `hsl(${45 + progress * 30}, 100%, 60%)`,   // Dynamic gold
-          `hsl(${35 + progress * 20}, 100%, 55%)`,   // Dynamic orange
-          `hsl(${25 + progress * 15}, 100%, 50%)`,   // Dynamic red-orange
-          `hsl(${340 + progress * 20}, 100%, 75%)`,  // Dynamic pink
-          `hsl(${280 + progress * 30}, 100%, 75%)`,  // Dynamic purple
-          `hsl(${260 + progress * 20}, 100%, 80%)`,  // Dynamic violet
-          `hsl(${210 + progress * 30}, 100%, 80%)`,  // Dynamic blue
-          `hsl(${45 + progress * 30}, 100%, 60%)`    // Back to dynamic gold
+          `hsl(${230 + progress * 20}, 100%, 95%)`,   // Dynamic very light indigo
+          `hsl(${270 + progress * 15}, 100%, 96%)`,   // Dynamic very light purple
+          `hsl(${45 + progress * 10}, 100%, 97%)`,    // Dynamic very light amber
+          `hsl(${210 + progress * 25}, 100%, 96%)`,   // Dynamic very light blue
+          `hsl(${200 + progress * 20}, 100%, 98%)`,   // Dynamic very light sky
+          `hsl(${250 + progress * 15}, 100%, 97%)`,   // Dynamic very light violet
+          `hsl(${330 + progress * 20}, 100%, 98%)`,   // Dynamic very light pink
+          `hsl(${230 + progress * 20}, 100%, 95%)`    // Back to dynamic very light indigo
         ],
         shadow: [
-          `hsla(${45 + progress * 30}, 100%, 60%, 0.8)`,   // Dynamic gold with opacity
-          `hsla(${35 + progress * 20}, 100%, 55%, 0.8)`,   // Dynamic orange with opacity
-          `hsla(${25 + progress * 15}, 100%, 50%, 0.8)`,   // Dynamic red-orange with opacity
-          `hsla(${340 + progress * 20}, 100%, 75%, 0.8)`,  // Dynamic pink with opacity
-          `hsla(${280 + progress * 30}, 100%, 75%, 0.8)`,  // Dynamic purple with opacity
-          `hsla(${260 + progress * 20}, 100%, 80%, 0.8)`,  // Dynamic violet with opacity
-          `hsla(${210 + progress * 30}, 100%, 80%, 0.8)`,  // Dynamic blue with opacity
-          `hsla(${45 + progress * 30}, 100%, 60%, 0.8)`    // Back to dynamic gold with opacity
+          `hsla(${230 + progress * 20}, 100%, 95%, 0.9)`,   // Dynamic very light indigo with opacity
+          `hsla(${270 + progress * 15}, 100%, 96%, 0.9)`,   // Dynamic very light purple with opacity
+          `hsla(${45 + progress * 10}, 100%, 97%, 0.9)`,    // Dynamic very light amber with opacity
+          `hsla(${210 + progress * 25}, 100%, 96%, 0.9)`,   // Dynamic very light blue with opacity
+          `hsla(${200 + progress * 20}, 100%, 98%, 0.9)`,   // Dynamic very light sky with opacity
+          `hsla(${250 + progress * 15}, 100%, 97%, 0.9)`,   // Dynamic very light violet with opacity
+          `hsla(${330 + progress * 20}, 100%, 98%, 0.9)`,   // Dynamic very light pink with opacity
+          `hsla(${230 + progress * 20}, 100%, 95%, 0.9)`    // Back to dynamic very light indigo with opacity
         ]
       };
 

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(-45deg, 
+                #3b82f6, 
+                #6366f1, 
+                #8b5cf6, 
+                #a855f7, 
+                #ec4899, 
+                #8b5cf6, 
+                #6366f1, 
+                #3b82f6
+            );
+            background-size: 300% 300%;
+            animation: gradientAnimation 12s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes textGradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-name-gradient {
+            background: linear-gradient(
+                -45deg,
+                #e0e7ff,  /* very light indigo */
+                #f3e8ff,  /* very light purple */
+                #fef3c7,  /* very light amber */
+                #dbeafe,  /* very light blue */
+                #f0f9ff,  /* very light sky */
+                #f5f3ff,  /* very light violet */
+                #fdf2f8,  /* very light pink */
+                #e0e7ff   /* back to very light indigo */
+            );
+            background-size: 300% 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGradientAnimation 8s ease infinite;
+            font-weight: bold;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+            font-size: 3rem;
+        }
+
+        .hero-name-gradient::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            background: linear-gradient(
+                -45deg,
+                rgba(224, 231, 255, 0.9),  /* very light indigo with opacity */
+                rgba(243, 232, 255, 0.9),  /* very light purple with opacity */
+                rgba(254, 243, 199, 0.9),  /* very light amber with opacity */
+                rgba(219, 234, 254, 0.9),  /* very light blue with opacity */
+                rgba(240, 249, 255, 0.9),  /* very light sky with opacity */
+                rgba(245, 243, 255, 0.9),  /* very light violet with opacity */
+                rgba(253, 242, 248, 0.9),  /* very light pink with opacity */
+                rgba(224, 231, 255, 0.9)   /* back to very light indigo with opacity */
+            );
+            background-size: 300% 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGradientAnimation 8s ease infinite;
+            filter: blur(2px);
+            opacity: 0.8;
+        }
+
+        .test-container {
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Testing Animated Name Gradient</h1>
+        <div class="hero-name-gradient" data-text="VUMESH">VUMESH</div>
+        <p style="margin-top: 20px; font-size: 1.2rem;">
+            The name above should display with a subtle, animating gradient<br>
+            that harmonizes with the hero background colors.
+        </p>
+    </div>
+</body>
+</html>

@@ -150,11 +150,11 @@
 /* Fallback for browsers that don't support background-clip: text */
 @supports not (background-clip: text) {
   .hero-name-gradient {
-    color: #fbbf24 !important; /* Fallback to amber-400 */
+    color: #e0e7ff !important; /* Fallback to very light indigo */
     text-shadow: 
-      0 0 10px rgba(251, 191, 36, 0.5),
-      0 0 20px rgba(251, 191, 36, 0.3),
-      0 0 30px rgba(251, 191, 36, 0.2);
+      0 0 10px rgba(224, 231, 255, 0.6),
+      0 0 20px rgba(224, 231, 255, 0.4),
+      0 0 30px rgba(224, 231, 255, 0.3);
   }
   
   .hero-name-gradient::before {
@@ -166,14 +166,14 @@
 .hero-name-gradient {
   background: var(--hero-name-primary-gradient, linear-gradient(
     -45deg,
-    #fbbf24,  /* amber-400 - light gold */
-    #f59e0b,  /* amber-500 - gold */
-    #f97316,  /* orange-500 - orange */
-    #fb7185,  /* rose-400 - soft pink */
-    #e879f9,  /* fuchsia-400 - light purple */
-    #a78bfa,  /* violet-400 - violet */
-    #93c5fd,  /* sky-300 - light blue */
-    #fbbf24   /* back to amber-400 */
+    #e0e7ff,  /* very light indigo */
+    #f3e8ff,  /* very light purple */
+    #fef3c7,  /* very light amber */
+    #dbeafe,  /* very light blue */
+    #f0f9ff,  /* very light sky */
+    #f5f3ff,  /* very light violet */
+    #fdf2f8,  /* very light pink */
+    #e0e7ff   /* back to very light indigo */
   ));
   background-size: 300% 300%;
   background-clip: text;
@@ -195,14 +195,14 @@
   z-index: -1;
   background: var(--hero-name-shadow-gradient, linear-gradient(
     -45deg,
-    rgba(251, 191, 36, 0.8),  /* amber-400 with opacity */
-    rgba(245, 158, 11, 0.8),  /* amber-500 with opacity */
-    rgba(249, 115, 22, 0.8),  /* orange-500 with opacity */
-    rgba(251, 113, 133, 0.8), /* rose-400 with opacity */
-    rgba(232, 121, 249, 0.8), /* fuchsia-400 with opacity */
-    rgba(167, 139, 250, 0.8), /* violet-400 with opacity */
-    rgba(147, 197, 253, 0.8), /* sky-300 with opacity */
-    rgba(251, 191, 36, 0.8)   /* back to amber-400 with opacity */
+    rgba(224, 231, 255, 0.9),  /* very light indigo with opacity */
+    rgba(243, 232, 255, 0.9),  /* very light purple with opacity */
+    rgba(254, 243, 199, 0.9),  /* very light amber with opacity */
+    rgba(219, 234, 254, 0.9),  /* very light blue with opacity */
+    rgba(240, 249, 255, 0.9),  /* very light sky with opacity */
+    rgba(245, 243, 255, 0.9),  /* very light violet with opacity */
+    rgba(253, 242, 248, 0.9),  /* very light pink with opacity */
+    rgba(224, 231, 255, 0.9)   /* back to very light indigo with opacity */
   ));
   background-size: 300% 300%;
   background-clip: text;
@@ -210,7 +210,7 @@
   -webkit-text-fill-color: transparent;
   animation: textGradientAnimation 8s ease infinite;
   filter: blur(2px);
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 /* Hover effect for enhanced interactivity */
