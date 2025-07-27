@@ -2,6 +2,7 @@ import React from 'react';
 import { useHeroEffects } from '../hooks/useHeroEffects';
 import { useDynamicTextContrast } from '../hooks/useDynamicTextContrast';
 import { useWaterRipple } from '../hooks/useWaterRipple';
+import { useMobileTilt } from '../hooks/useMobileTilt';
 
 interface HeroProps {
   id: string;
@@ -21,6 +22,12 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
     scale: 1.8
   });
   
+  // Mobile tilt effect hook
+  const { heroRef: mobileTiltRef, state: mobileTiltState, handleTiltPromptClick } = useMobileTilt();
+  
+  // Use mobile tilt ref if on mobile, otherwise use regular hero ref
+  const finalHeroRef = mobileTiltState.isMobile ? mobileTiltRef : heroRef;
+  
   const scrollToProjects = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
     const projectsSection = document.getElementById('projects');
@@ -30,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
   };
 
   return (
-    <section ref={heroRef} id={id} className="relative h-screen flex items-center justify-center text-center hero-gradient text-white overflow-hidden">
+    <section ref={finalHeroRef} id={id} className="relative h-screen flex items-center justify-center text-center hero-gradient text-white overflow-hidden">
       {/* CRITICAL: Parallax background layer - DO NOT REMOVE! This enables cursor-following movement */}
       <div className="hero-parallax"></div>
       
@@ -134,6 +141,27 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
            <path d="M19 9l-7 7-7-7"></path>
          </svg>
        </div>
+      
+      {/* Mobile Tilt Prompt */}
+      {mobileTiltState.showTiltPrompt && (
+        <div className="mobile-tilt-prompt">
+          <button
+            onClick={handleTiltPromptClick}
+            className="tilt-prompt-button"
+            aria-label="Enable 3D tilt effect"
+          >
+            <span className="tilt-prompt-icon">📱</span>
+            <span className="tilt-prompt-text">Click for 3D Tilt Effect</span>
+          </button>
+        </div>
+      )}
+      
+      {/* Permission Denied Message */}
+      {mobileTiltState.permissionDenied && (
+        <div className="permission-denied-message">
+          <span>Tilt effect unavailable</span>
+        </div>
+      )}
     </section>
   );
 };

@@ -525,6 +525,153 @@
 .touch-device .cursor-trail {
   display: none;
 }
+
+/* Mobile device optimizations - ensure particles are visible for tilt effect */
+.mobile-device .hero-particle {
+  display: block !important;
+}
+
+/* ===== MOBILE 3D TILT EFFECT STYLES ===== */
+
+/* Mobile tilt prompt styling */
+.mobile-tilt-prompt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+.tilt-prompt-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 4px 16px rgba(139, 92, 246, 0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: #1f2937;
+  min-width: 200px;
+}
+
+.tilt-prompt-button:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.15),
+    0 6px 20px rgba(139, 92, 246, 0.3);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.tilt-prompt-button:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.tilt-prompt-icon {
+  font-size: 24px;
+  animation: tiltPromptPulse 2s ease-in-out infinite;
+}
+
+.tilt-prompt-text {
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+@keyframes tiltPromptPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Permission denied message */
+.permission-denied-message {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  z-index: 1001;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0%, 100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  20%, 80% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 3D Transform styles for mobile tilt effect */
+.mobile-device .hero-parallax,
+.mobile-device .hero-particles {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* Ensure particles remain visible during tilt */
+.mobile-device .hero-particle {
+  display: block !important;
+  transform-style: preserve-3d;
+}
+
+/* Enhanced 3D perspective for mobile */
+.mobile-device {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Smooth transitions for tilt effect */
+.mobile-device .hero-gradient {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* Mobile-specific optimizations for tilt effect */
+@media (max-width: 768px) {
+  .tilt-prompt-button {
+    padding: 12px 20px;
+    min-width: 180px;
+  }
+  
+  .tilt-prompt-text {
+    font-size: 13px;
+  }
+  
+  .tilt-prompt-icon {
+    font-size: 20px;
+  }
+  
+  /* Ensure smooth performance on mobile */
+  .mobile-device .hero-parallax,
+  .mobile-device .hero-particles,
+  .mobile-device .hero-gradient {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
 /* Additional particle positions for increased density */
 .hero-particle:nth-child(21) { left: 12%; top: 35%; }
 .hero-particle:nth-child(22) { left: 22%; top: 75%; }
