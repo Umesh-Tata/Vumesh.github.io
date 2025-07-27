@@ -1,5 +1,6 @@
 /* Import animations */
 @import './animations.css';
+@import './hover-animations.css';
 
 /* Animated Gradient Background */
 @keyframes gradientAnimation {

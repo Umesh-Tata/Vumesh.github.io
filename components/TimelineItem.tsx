@@ -9,7 +9,7 @@ interface TimelineItemProps {
 
 const TimelineItem: React.FC<TimelineItemProps> = ({ item, isLast }) => {
   return (
-    <div className="relative pl-10 md:pl-12 pb-8">
+    <div className="relative pl-10 md:pl-12 pb-8 timeline-item hover-element">
       {/* Vertical line */}
       {!isLast && <div className="absolute left-4 md:left-5 top-1 bottom-0 w-0.5 bg-slate-300 dark:bg-slate-600"></div>}
       
