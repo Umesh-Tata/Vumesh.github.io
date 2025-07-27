@@ -26,7 +26,7 @@ import {
 
 // Portfolio Data based on Resume
 const personalInfo = {
-  name: "VUMESH T",
+  name: "VUMESH",
   tagline: "Full-Stack Developer | Java, Spring Boot, React",
   email: "jayavumesh1@gmail.com",
   phone: "(316) 461-1206",
