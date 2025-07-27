@@ -37,6 +37,16 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
         <div className="hero-particle"></div>
         <div className="hero-particle"></div>
         <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
+        <div className="hero-particle"></div>
       </div>
       
       {/* Optional: Background image for the hero section */}
