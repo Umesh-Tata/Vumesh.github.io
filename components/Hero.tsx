@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
 
   return (
     <section ref={heroRef} id={id} className="relative h-screen flex items-center justify-center text-center hero-gradient text-white overflow-hidden">
-      {/* Parallax background layer */}
+      {/* CRITICAL: Parallax background layer - DO NOT REMOVE! This enables cursor-following movement */}
       <div className="hero-parallax"></div>
       
       {/* Optional: Background image for the hero section */}

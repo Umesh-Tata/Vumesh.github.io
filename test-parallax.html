@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Effect Test</title>
+    <style>
+        /* Test the parallax CSS */
+        .hero-gradient {
+            background: linear-gradient(-45deg, #3b82f6, #6366f1, #8b5cf6, #6366f1, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* CRITICAL: Parallax layer for subtle depth - DO NOT REMOVE OR DISABLE */
+        .hero-parallax {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            /* CRITICAL: Default parallax transform - DO NOT REMOVE OR DISABLE */
+            transform: translate(calc(var(--parallax-x, 0)), calc(var(--parallax-y, 0)));
+            transition: transform 0.1s ease-out;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .test-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-section hero-gradient">
+        <!-- CRITICAL: Parallax background layer - DO NOT REMOVE! This enables cursor-following movement -->
+        <div class="hero-parallax"></div>
+        
+        <div class="hero-content">
+            <h1>Parallax Effect Test</h1>
+            <p>Move your cursor around this area to see the parallax effect</p>
+            <p>Current position: <span id="position">0, 0</span></p>
+        </div>
+    </div>
+
+    <script>
+        // Simplified version of the parallax effect for testing
+        const heroElement = document.querySelector('.hero-gradient');
+        const positionDisplay = document.getElementById('position');
+        
+        let animationFrameRef;
+        let mousePositionRef = { x: 0, y: 0 };
+        let currentPositionRef = { x: 0, y: 0 };
+        let isMovingRef = false;
+
+        // Throttle function for performance
+        const throttle = (func, delay) => {
+            let lastCall = 0;
+            return (...args) => {
+                const now = Date.now();
+                if (now - lastCall < delay) return;
+                lastCall = now;
+                return func(...args);
+            };
+        };
+
+        // Update cursor position for gradient effect
+        const updateCursorPosition = throttle((e) => {
+            const rect = heroElement.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+            heroElement.style.setProperty('--mouse-x', `${x}%`);
+            heroElement.style.setProperty('--mouse-y', `${y}%`);
+
+            // Store mouse position for parallax
+            mousePositionRef.x = (e.clientX / window.innerWidth - 0.5) * 2;
+            mousePositionRef.y = (e.clientY / window.innerHeight - 0.5) * 2;
+            isMovingRef = true;
+        }, 16); // ~60fps
+
+        // CRITICAL: Smooth parallax animation - Keep this effect active!
+        const animateParallax = () => {
+            if (isMovingRef) {
+                // Smooth interpolation
+                currentPositionRef.x += (mousePositionRef.x - currentPositionRef.x) * 0.1;
+                currentPositionRef.y += (mousePositionRef.y - currentPositionRef.y) * 0.1;
+
+                // CRITICAL: Apply parallax transform - This creates the cursor-following effect
+                const parallaxX = currentPositionRef.x * 30; // Increased to 30px max movement for more visibility
+                const parallaxY = currentPositionRef.y * 30;
+
+                heroElement.style.setProperty('--parallax-x', `${parallaxX}px`);
+                heroElement.style.setProperty('--parallax-y', `${parallaxY}px`);
+
+                // Update position display
+                positionDisplay.textContent = `${Math.round(parallaxX)}, ${Math.round(parallaxY)}`;
+
+                // Check if animation should continue
+                if (
+                    Math.abs(mousePositionRef.x - currentPositionRef.x) < 0.01 &&
+                    Math.abs(mousePositionRef.y - currentPositionRef.y) < 0.01
+                ) {
+                    isMovingRef = false;
+                }
+            }
+
+            animationFrameRef = requestAnimationFrame(animateParallax);
+        };
+
+        // Reset on mouse leave
+        const handleMouseLeave = () => {
+            heroElement.style.setProperty('--mouse-x', '50%');
+            heroElement.style.setProperty('--mouse-y', '50%');
+            mousePositionRef = { x: 0, y: 0 };
+            isMovingRef = true;
+            positionDisplay.textContent = '0, 0';
+        };
+
+        // Event listeners
+        heroElement.addEventListener('mousemove', updateCursorPosition);
+        heroElement.addEventListener('mouseleave', handleMouseLeave);
+
+        // Start animation loop
+        animateParallax();
+
+        console.log('Parallax effect test initialized successfully!');
+        console.log('Move your cursor over the hero section to see the effect.');
+    </script>
+</body>
+</html>
