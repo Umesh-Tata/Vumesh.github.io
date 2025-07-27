@@ -370,21 +370,23 @@
 .hero-particle:nth-child(9) { left: 90%; top: 65%; }
 .hero-particle:nth-child(10) { left: 15%; top: 85%; }
 
-/* Enhanced cursor glow with pulse effect */
+/* Enhanced cursor glow with subtle, smooth transitions */
 .cursor-glow {
-  animation: pulse 2s ease-in-out infinite;
+  /* Removed pulse animation for more subtle appearance */
+  will-change: opacity, transform;
 }
 
-/* Cursor trail elements */
+/* Cursor trail elements - Enhanced for softer appearance */
 .cursor-trail {
   position: absolute;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.8), transparent);
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3), rgba(99, 102, 241, 0.15), transparent);
   border-radius: 50%;
   pointer-events: none;
   z-index: 4;
-  animation: cursorTrail 1s ease-out forwards;
+  animation: cursorTrail 1.2s ease-out forwards;
+  filter: blur(2px);
 }
 
 /* Enhanced parallax with additional depth */
@@ -405,6 +407,7 @@
   
   .cursor-glow {
     animation: none;
+    filter: blur(6px);
   }
 }
 
