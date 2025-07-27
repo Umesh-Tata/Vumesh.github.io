@@ -371,6 +371,9 @@
   pointer-events: none;
   z-index: 3;
   overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
 }
 
 /* Individual particle styles */
@@ -477,6 +480,33 @@
     height: 3px;
     /* Keep enhanced animations on mobile but slightly slower for performance */
     animation-duration: 6s !important;
+  }
+
+  /* Mobile 3D tilt effect styles */
+  .hero-parallax,
+  .hero-particles {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Enhanced 3D transforms for mobile tilt effect */
+  .hero-parallax {
+    transform: translate(calc(var(--parallax-x, 0)), calc(var(--parallax-y, 0))) rotateX(0deg) rotateY(0deg);
+    transition: transform 0.08s ease-out;
+  }
+
+  .hero-particles {
+    transform: rotateX(0deg) rotateY(0deg);
+    transition: transform 0.08s ease-out;
+  }
+
+  /* Enhanced depth for 3D effect */
+  .hero-particle {
+    transform-style: preserve-3d;
+    will-change: transform;
   }
   
   .hero-particle:nth-child(2n) {
