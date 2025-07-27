@@ -36,34 +36,36 @@ export const useDynamicTextContrast = () => {
     const updateGradientColors = (time: number) => {
       timeRef.current = time;
       
-      // Calculate animation progress (0 to 1) based on time
-      const progress = (time % 8000) / 8000; // 8 second cycle
+      // Calculate background animation progress (0 to 1) based on 12-second cycle
+      // This matches the hero background gradient animation duration
+      const backgroundProgress = (time % 12000) / 12000; // 12 second cycle to match hero-gradient
       
-      // Create dynamic color variations based on animation progress
-      const dynamicColors = {
+      // Create reactive color variations that complement the background
+      // Colors shift based on background gradient position
+      const reactiveColors = {
         primary: [
-          `hsl(${45 + progress * 30}, 100%, 60%)`,   // Dynamic gold
-          `hsl(${35 + progress * 20}, 100%, 55%)`,   // Dynamic orange
-          `hsl(${25 + progress * 15}, 100%, 50%)`,   // Dynamic red-orange
-          `hsl(${340 + progress * 20}, 100%, 75%)`,  // Dynamic pink
-          `hsl(${280 + progress * 30}, 100%, 75%)`,  // Dynamic purple
-          `hsl(${260 + progress * 20}, 100%, 80%)`,  // Dynamic violet
-          `hsl(${210 + progress * 30}, 100%, 80%)`,  // Dynamic blue
-          `hsl(${45 + progress * 30}, 100%, 60%)`    // Back to dynamic gold
+          `hsl(${45 + backgroundProgress * 60}, 100%, 65%)`,   // Reactive gold
+          `hsl(${35 + backgroundProgress * 40}, 100%, 60%)`,   // Reactive orange
+          `hsl(${25 + backgroundProgress * 30}, 100%, 55%)`,   // Reactive red-orange
+          `hsl(${340 + backgroundProgress * 40}, 100%, 80%)`,  // Reactive pink
+          `hsl(${280 + backgroundProgress * 60}, 100%, 80%)`,  // Reactive purple
+          `hsl(${260 + backgroundProgress * 40}, 100%, 85%)`,  // Reactive violet
+          `hsl(${210 + backgroundProgress * 60}, 100%, 85%)`,  // Reactive blue
+          `hsl(${45 + backgroundProgress * 60}, 100%, 65%)`    // Back to reactive gold
         ],
         shadow: [
-          `hsla(${45 + progress * 30}, 100%, 60%, 0.8)`,   // Dynamic gold with opacity
-          `hsla(${35 + progress * 20}, 100%, 55%, 0.8)`,   // Dynamic orange with opacity
-          `hsla(${25 + progress * 15}, 100%, 50%, 0.8)`,   // Dynamic red-orange with opacity
-          `hsla(${340 + progress * 20}, 100%, 75%, 0.8)`,  // Dynamic pink with opacity
-          `hsla(${280 + progress * 30}, 100%, 75%, 0.8)`,  // Dynamic purple with opacity
-          `hsla(${260 + progress * 20}, 100%, 80%, 0.8)`,  // Dynamic violet with opacity
-          `hsla(${210 + progress * 30}, 100%, 80%, 0.8)`,  // Dynamic blue with opacity
-          `hsla(${45 + progress * 30}, 100%, 60%, 0.8)`    // Back to dynamic gold with opacity
+          `hsla(${45 + backgroundProgress * 60}, 100%, 65%, 0.8)`,   // Reactive gold with opacity
+          `hsla(${35 + backgroundProgress * 40}, 100%, 60%, 0.8)`,   // Reactive orange with opacity
+          `hsla(${25 + backgroundProgress * 30}, 100%, 55%, 0.8)`,   // Reactive red-orange with opacity
+          `hsla(${340 + backgroundProgress * 40}, 100%, 80%, 0.8)`,  // Reactive pink with opacity
+          `hsla(${280 + backgroundProgress * 60}, 100%, 80%, 0.8)`,  // Reactive purple with opacity
+          `hsla(${260 + backgroundProgress * 40}, 100%, 85%, 0.8)`,  // Reactive violet with opacity
+          `hsla(${210 + backgroundProgress * 60}, 100%, 85%, 0.8)`,  // Reactive blue with opacity
+          `hsla(${45 + backgroundProgress * 60}, 100%, 65%, 0.8)`    // Back to reactive gold with opacity
         ]
       };
 
-      setGradientColors(dynamicColors);
+      setGradientColors(reactiveColors);
       animationRef.current = requestAnimationFrame(updateGradientColors);
     };
 
