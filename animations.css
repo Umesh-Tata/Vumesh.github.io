@@ -536,9 +536,8 @@
 /* Mobile tilt prompt styling */
 .mobile-tilt-prompt {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 100px;
+  right: 20px;
   z-index: 1000;
   pointer-events: auto;
 }
@@ -569,11 +568,11 @@
   box-shadow: 
     0 12px 40px rgba(0, 0, 0, 0.15),
     0 6px 20px rgba(139, 92, 246, 0.3);
-  transform: translate(-50%, -50%) scale(1.05);
+  transform: scale(1.05);
 }
 
 .tilt-prompt-button:active {
-  transform: translate(-50%, -50%) scale(0.95);
+  transform: scale(0.95);
 }
 
 .tilt-prompt-icon {
@@ -651,6 +650,11 @@
 
 /* Mobile-specific optimizations for tilt effect */
 @media (max-width: 768px) {
+  .mobile-tilt-prompt {
+    top: 80px;
+    right: 15px;
+  }
+  
   .tilt-prompt-button {
     padding: 12px 20px;
     min-width: 180px;
@@ -670,6 +674,27 @@
   .mobile-device .hero-gradient {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .mobile-tilt-prompt {
+    top: 70px;
+    right: 10px;
+  }
+  
+  .tilt-prompt-button {
+    min-width: 140px;
+    padding: 10px 14px;
+  }
+  
+  .tilt-prompt-text {
+    font-size: 11px;
+  }
+  
+  .tilt-prompt-icon {
+    font-size: 18px;
   }
 }
 /* Additional particle positions for increased density */
