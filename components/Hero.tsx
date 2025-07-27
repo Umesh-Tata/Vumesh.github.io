@@ -53,7 +53,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
           <a
             href="#projects"
             onClick={scrollToProjects}
-            className="bg-accent text-black hover:bg-yellow-400 font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto !text-neutral hover-lift button-hover interactive-element"
+            className="bg-accent text-black font-semibold py-3 px-8 rounded-lg shadow-md w-full sm:w-auto !text-neutral"
           >
             View My Work
           </a>
@@ -63,14 +63,14 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
               e.preventDefault();
               document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-neutral font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 w-full sm:w-auto hover-lift button-hover interactive-element"
+            className="bg-transparent border-2 border-white text-white font-semibold py-3 px-8 rounded-lg shadow-md w-full sm:w-auto"
           >
             Get In Touch
           </a>
         </div>
       </div>
        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-full flex justify-center animate-fade-in-up animate-stagger-3">
-         <svg className="w-8 h-8 text-white opacity-70 hover-scale interactive-element" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+         <svg className="w-8 h-8 text-white opacity-70" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
            <path d="M19 9l-7 7-7-7"></path>
          </svg>
        </div>

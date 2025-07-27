@@ -63,11 +63,11 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
   };
 
   return (
-    <nav className="fixed w-full z-50 bg-base-100 shadow-lg py-3 transition-colors duration-300">
+    <nav className="fixed w-full z-50 bg-base-100 shadow-lg py-3">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <a href="#hero" onClick={(e) => scrollToSection('#hero', e)} className="text-2xl font-bold text-primary hover-lift interactive-element">
+            <a href="#hero" onClick={(e) => scrollToSection('#hero', e)} className="text-2xl font-bold text-primary">
               MyPortfolio
             </a>
           </div>
@@ -78,10 +78,10 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => scrollToSection(item.href, e)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 nav-item-hover interactive-element
+                  className={`px-3 py-2 rounded-md text-sm font-medium
                     ${activeSection === item.href.substring(1)
                       ? 'text-white bg-primary' // Active item
-                      : 'text-neutral hover:text-primary' // Inactive item
+                      : 'text-neutral' // Inactive item
                     }`}
                   aria-current={activeSection === item.href.substring(1) ? 'page' : undefined}
                 >
@@ -94,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
           <div className="hidden md:block">
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-md text-neutral hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 hover-lift interactive-element"
+              className="p-2 rounded-md text-neutral"
               aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDarkMode ? (
@@ -112,7 +112,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
             {/* Dark Mode Toggle Button for Mobile */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-md text-neutral hover:text-primary hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 hover-lift interactive-element"
+              className="p-2 rounded-md text-neutral"
               aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDarkMode ? (
@@ -128,7 +128,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-neutral hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary hover-lift interactive-element"
+              className="inline-flex items-center justify-center p-2 rounded-md text-neutral focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
             >
@@ -148,15 +148,15 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-base-100 shadow-lg transition-colors duration-300" id="mobile-menu">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-base-100 shadow-lg" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(item.href, e)}
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-300 nav-item-hover interactive-element
-                ${activeSection === item.href.substring(1) ? 'text-white bg-primary' : 'text-neutral hover:bg-primary hover:text-white'}`}
+                className={`block px-3 py-2 rounded-md text-base font-medium
+                ${activeSection === item.href.substring(1) ? 'text-white bg-primary' : 'text-neutral'}`}
                 aria-current={activeSection === item.href.substring(1) ? 'page' : undefined}
               >
                 {item.name}
