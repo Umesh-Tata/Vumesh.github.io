@@ -25,7 +25,7 @@ import {
 } from './constants';
 
 // Portfolio Data based on Resume
-const personalInfo = {
+const initialPersonalInfo = {
   name: "VUMESH",
   tagline: "Full-Stack Developer | Java, Spring Boot, React",
   email: "jayavumesh1@gmail.com",
@@ -188,10 +188,24 @@ const projectsData: Project[] = [
 ];
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [personalInfo, setPersonalInfo] = useState(initialPersonalInfo);
   const { isDarkMode } = useDarkMode();
   const scrollProgress = useScrollProgress();
   useAnimationInitializer();
   usePerformanceOptimizer();
+
+  // Easter egg: Change name to "Sunny" after 13 minutes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPersonalInfo(prev => ({
+        ...prev,
+        name: "Sunny"
+      }));
+    }, 13 * 60 * 1000); // 13 minutes in milliseconds
+
+    // Cleanup timer on component unmount
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const checkScrollTop = () => {
