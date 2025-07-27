@@ -37,53 +37,57 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
   };
 
   return (
-    <section ref={finalHeroRef} id={id} className="relative h-screen flex items-center justify-center text-center hero-gradient text-white overflow-hidden">
-      {/* CRITICAL: Parallax background layer - DO NOT REMOVE! This enables cursor-following movement */}
-      <div className="hero-parallax"></div>
-      
-      {/* Enhanced: Floating particles for dynamic effect */}
-      <div className="hero-particles">
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        {/* Additional particles for increased density */}
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
-        <div className="hero-particle"></div>
+    <section ref={finalHeroRef} id={id} className="relative h-screen flex items-center justify-center text-center hero-gradient text-white overflow-hidden perspective-container">
+      {/* Dedicated background container for 3D tilt effects */}
+      <div className="hero-background-container">
+        {/* CRITICAL: Parallax background layer - DO NOT REMOVE! This enables cursor-following movement */}
+        <div className="hero-parallax"></div>
+        
+        {/* Enhanced: Floating particles for dynamic effect */}
+        <div className="hero-particles">
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          {/* Additional particles for increased density */}
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+          <div className="hero-particle"></div>
+        </div>
       </div>
       
       {/* Optional: Background image for the hero section */}
@@ -97,6 +101,7 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
         </div>
       )} */}
 
+      {/* Static foreground content - NOT affected by 3D tilt */}
       <div className="hero-content relative z-10 p-4">
         {/* The circular profile image with object-cover */}
         {/* <img 

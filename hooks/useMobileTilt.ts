@@ -99,21 +99,12 @@ export const useMobileTilt = () => {
       const rotateX = lastBeta.current * 0.8; // Front-to-back tilt
       const rotateY = lastGamma.current * 0.8; // Left-to-right tilt
 
-      // Apply transforms to hero section and its background elements
-      const heroElement = heroRef.current;
-      const parallaxElement = heroElement.querySelector('.hero-parallax') as HTMLElement;
-      const particlesElement = heroElement.querySelector('.hero-particles') as HTMLElement;
+      // Apply transforms ONLY to the background container
+      const backgroundContainer = heroRef.current.querySelector('.hero-background-container') as HTMLElement;
 
-      if (parallaxElement) {
-        parallaxElement.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      if (backgroundContainer) {
+        backgroundContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       }
-
-      if (particlesElement) {
-        particlesElement.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      }
-
-      // Also apply to the main hero element for comprehensive effect
-      heroElement.style.transform = `rotateX(${rotateX * 0.5}deg) rotateY(${rotateY * 0.5}deg)`;
     };
 
     window.addEventListener('deviceorientation', handleDeviceOrientation);

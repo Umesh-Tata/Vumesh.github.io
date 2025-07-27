@@ -361,6 +361,24 @@
   animation: enhancedGradientShift 20s ease infinite;
 }
 
+/* Perspective container for 3D transforms */
+.perspective-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Dedicated background container for 3D tilt effects */
+.hero-background-container {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
 /* Floating particles container */
 .hero-particles {
   position: absolute;
@@ -467,6 +485,11 @@
 
 /* Enhanced parallax with additional depth */
 .hero-parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   filter: contrast(1.1) brightness(1.05);
 }
 
@@ -623,6 +646,12 @@
 }
 
 /* 3D Transform styles for mobile tilt effect */
+.mobile-device .hero-background-container {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
 .mobile-device .hero-parallax,
 .mobile-device .hero-particles {
   transform-style: preserve-3d;
@@ -669,6 +698,11 @@
   }
   
   /* Ensure smooth performance on mobile */
+  .mobile-device .hero-background-container {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
   .mobile-device .hero-parallax,
   .mobile-device .hero-particles,
   .mobile-device .hero-gradient {
