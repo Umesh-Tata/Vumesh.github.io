@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHeroEffects } from '../hooks/useHeroEffects';
+import { useMobileTiltEffect } from '../hooks/useMobileTiltEffect';
 import { useDynamicTextContrast } from '../hooks/useDynamicTextContrast';
 import { useWaterRipple } from '../hooks/useWaterRipple';
 
@@ -12,7 +13,12 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgImageUrl }) => {
+  // Use desktop hero effects hook
   const heroRef = useHeroEffects();
+  
+  // Initialize mobile tilt effect with the same ref
+  useMobileTiltEffect(heroRef);
+  
   const { getGradientCSS } = useDynamicTextContrast();
   const { createRipple } = useWaterRipple({
     duration: 800,

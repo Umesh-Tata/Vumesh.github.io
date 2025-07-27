@@ -390,3 +390,58 @@
   background-color: rgb(234 179 8) !important; /* Force light mode yellow-500 */
   color: rgb(51 65 85) !important; /* Force light mode neutral text color */
 }
+
+/* ===== MOBILE TILT EFFECT STYLES ===== */
+/* Mobile tilt effect styles */
+.mobile-tilt-enabled {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.mobile-tilt-enabled .hero-parallax {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.mobile-tilt-enabled .hero-particles {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* Enhanced gradient overlay for mobile tilt */
+.mobile-tilt-enabled .hero-gradient::before {
+  transform: rotateX(var(--tilt-y, 0deg)) rotateY(var(--tilt-x, 0deg));
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+/* Disable mouse parallax on mobile devices */
+.mobile-device .hero-parallax {
+  transform: none !important;
+}
+
+.mobile-device .cursor-glow {
+  display: none !important;
+}
+
+.mobile-device .cursor-trail {
+  display: none !important;
+}
+
+/* Tilt active indicator */
+.tilt-active::after {
+  content: '🎯';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  opacity: 0.7;
+  z-index: 20;
+  animation: tiltIndicator 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes tiltIndicator {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Tilt Effect Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .status.success { background: rgba(34, 197, 94, 0.3); }
+        .status.warning { background: rgba(251, 191, 36, 0.3); }
+        .status.error { background: rgba(239, 68, 68, 0.3); }
+        .tilt-indicator {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+        }
+        .instructions {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🎯 Mobile Tilt Effect Test</h1>
+        
+        <div class="test-section">
+            <h2>Device Detection</h2>
+            <div id="device-status" class="status">Checking device...</div>
+            <div id="permission-status" class="status">Checking permissions...</div>
+        </div>
+
+        <div class="test-section">
+            <h2>Tilt Effect Demo</h2>
+            <div class="tilt-indicator" id="tilt-indicator">📱</div>
+            <p>This circle should tilt as you move your device. The effect is most noticeable on mobile devices.</p>
+        </div>
+
+        <div class="test-section">
+            <h2>Testing Instructions</h2>
+            <div class="instructions">
+                <h3>For Mobile Devices:</h3>
+                <ol>
+                    <li>Open this page on a mobile device (phone or tablet)</li>
+                    <li>Tap anywhere on the page to enable motion sensors</li>
+                    <li>Grant permission when prompted (iOS Safari)</li>
+                    <li>Tilt your device left/right and forward/backward</li>
+                    <li>Watch the circle above tilt in response to device movement</li>
+                </ol>
+                
+                <h3>For Desktop:</h3>
+                <ol>
+                    <li>Open browser developer tools (F12)</li>
+                    <li>Enable device simulation (mobile view)</li>
+                    <li>Use the device orientation controls in dev tools</li>
+                    <li>Or use the device orientation API in console</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>Console Testing</h2>
+            <p>Open browser console and run:</p>
+            <code style="background: rgba(0,0,0,0.3); padding: 5px; border-radius: 3px;">
+                // Simulate device orientation (for testing)<br>
+                window.dispatchEvent(new DeviceOrientationEvent('deviceorientation', {<br>
+                &nbsp;&nbsp;beta: 45,  // Front-to-back tilt<br>
+                &nbsp;&nbsp;gamma: 0   // Left-to-right tilt<br>
+                }));
+            </code>
+        </div>
+    </div>
+
+    <script>
+        // Device detection
+        const isMobileDevice = () => {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+                   window.innerWidth <= 768;
+        };
+
+        // Update device status
+        const deviceStatus = document.getElementById('device-status');
+        const permissionStatus = document.getElementById('permission-status');
+        const tiltIndicator = document.getElementById('tilt-indicator');
+
+        if (isMobileDevice()) {
+            deviceStatus.textContent = '✅ Mobile device detected';
+            deviceStatus.className = 'status success';
+        } else {
+            deviceStatus.textContent = '⚠️ Desktop device detected (use dev tools for testing)';
+            deviceStatus.className = 'status warning';
+        }
+
+        // Device orientation handling
+        let permissionGranted = false;
+        let isActive = false;
+
+        const requestPermission = async () => {
+            if (typeof (DeviceOrientationEvent).requestPermission === 'function') {
+                try {
+                    const permission = await (DeviceOrientationEvent).requestPermission();
+                    return permission === 'granted';
+                } catch (error) {
+                    console.warn('Permission denied:', error);
+                    return false;
+                }
+            }
+            return true;
+        };
+
+        const handleDeviceOrientation = (event) => {
+            if (!permissionGranted || !isActive) return;
+
+            const beta = event.beta; // Front-to-back tilt
+            const gamma = event.gamma; // Left-to-right tilt
+
+            if (beta !== null && gamma !== null) {
+                // Convert to tilt values (multiply by 10 for prominent effect)
+                const tiltX = (gamma / 90) * 10;
+                const tiltY = ((beta - 45) / 135) * 10;
+
+                // Clamp values
+                const clampedX = Math.max(-12, Math.min(12, tiltX));
+                const clampedY = Math.max(-12, Math.min(12, tiltY));
+
+                // Apply transform
+                tiltIndicator.style.transform = `rotateX(${clampedY}deg) rotateY(${clampedX}deg)`;
+            }
+        };
+
+        // Initialize on user interaction
+        const initializeTilt = async () => {
+            if (isActive) return;
+
+            const granted = await requestPermission();
+            if (granted) {
+                permissionGranted = true;
+                isActive = true;
+                permissionStatus.textContent = '✅ Motion sensors enabled';
+                permissionStatus.className = 'status success';
+                
+                // Add visual indicator
+                document.body.classList.add('tilt-active');
+            } else {
+                permissionStatus.textContent = '❌ Motion sensors disabled';
+                permissionStatus.className = 'status error';
+            }
+        };
+
+        // Event listeners
+        document.addEventListener('touchstart', initializeTilt);
+        document.addEventListener('click', initializeTilt);
+        window.addEventListener('deviceorientation', handleDeviceOrientation);
+
+        // Console helper for testing
+        window.testTilt = (beta = 45, gamma = 0) => {
+            window.dispatchEvent(new DeviceOrientationEvent('deviceorientation', { beta, gamma }));
+        };
+
+        console.log('🎯 Mobile Tilt Test loaded!');
+        console.log('Use testTilt(beta, gamma) in console to simulate device orientation');
+    </script>
+</body>
+</html>
