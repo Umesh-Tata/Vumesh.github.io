@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHeroEffects } from '../hooks/useHeroEffects';
 import { useDynamicTextContrast } from '../hooks/useDynamicTextContrast';
+import { useWaterRipple } from '../hooks/useWaterRipple';
 
 interface HeroProps {
   id: string;
@@ -13,6 +14,12 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgImageUrl }) => {
   const heroRef = useHeroEffects();
   const { getGradientCSS } = useDynamicTextContrast();
+  const { createRipple } = useWaterRipple({
+    duration: 800,
+    color: 'rgba(255, 255, 255, 0.2)',
+    opacity: 0.4,
+    scale: 1.8
+  });
   
   const scrollToProjects = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();
@@ -70,7 +77,13 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
           className="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg object-cover hover-scale"
         /> */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4">
-          Hello, I'm <span className="hero-name-gradient" data-text={name} style={getGradientCSS()}>{name}</span>
+          Hello, I'm <span 
+            className="hero-name-gradient cursor-pointer hover:opacity-90 transition-opacity duration-200" 
+            data-text={name} 
+            style={getGradientCSS()}
+            onClick={createRipple}
+            title="Click for a ripple effect!"
+          >{name}</span>
         </h1>
         <p className="text-xl sm:text-2xl md:text-3xl font-light mb-8 max-w-3xl mx-auto">
           {tagline}

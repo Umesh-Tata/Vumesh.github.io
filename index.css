@@ -323,6 +323,59 @@
   display: none !important;
 }
 
+/* ===== WATER RIPPLE EFFECT STYLES ===== */
+.water-ripple-container {
+  pointer-events: none;
+  z-index: 9998;
+}
+
+.water-ripple {
+  pointer-events: none;
+  will-change: width, height, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Enhanced ripple effect with subtle wave distortion */
+.water-ripple::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: rippleWave 0.8s ease-out;
+  pointer-events: none;
+}
+
+@keyframes rippleWave {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Reduced motion support for ripple effect */
+@media (prefers-reduced-motion: reduce) {
+  .water-ripple {
+    transition: none !important;
+  }
+  
+  .water-ripple::before {
+    animation: none !important;
+  }
+}
+
 /* ===== VIEW MY WORK BUTTON DARK MODE OVERRIDE ===== */
 /* Ensure the 'View My Work' button maintains its light mode colors regardless of theme */
 
