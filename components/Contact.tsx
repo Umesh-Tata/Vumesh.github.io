@@ -27,7 +27,7 @@ const Contact: React.FC<ContactProps> = ({ id, icon, email, linkedinUrl, githubU
         <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
           <a
             href={`mailto:${email}`}
-            className="flex items-center justify-center w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-lg shadow-md text-lg font-medium"
+            className="flex items-center justify-center w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-lg shadow-md text-lg font-medium contact-email-button hover-element"
           >
             <EnvelopeIcon className="w-5 h-5 mr-2" /> Email Me
           </a>
@@ -37,7 +37,7 @@ const Contact: React.FC<ContactProps> = ({ id, icon, email, linkedinUrl, githubU
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="text-neutral p-3 bg-base-100 rounded-full shadow-md border border-gray-200 dark:border-gray-700"
+              className="text-neutral p-3 bg-base-100 rounded-full shadow-md border border-gray-200 dark:border-gray-700 social-link hover-element"
             >
               <LinkedInIcon className="w-6 h-6" />
             </a>
@@ -46,7 +46,7 @@ const Contact: React.FC<ContactProps> = ({ id, icon, email, linkedinUrl, githubU
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="text-neutral p-3 bg-base-100 rounded-full shadow-md border border-gray-200 dark:border-gray-700"
+              className="text-neutral p-3 bg-base-100 rounded-full shadow-md border border-gray-200 dark:border-gray-700 social-link hover-element"
             >
               <GitHubIcon className="w-6 h-6" />
             </a>

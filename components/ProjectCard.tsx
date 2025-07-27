@@ -9,12 +9,12 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="bg-base-100 rounded-xl shadow-2xl overflow-hidden flex flex-col h-full border border-gray-200 dark:border-gray-700">
+    <div className="bg-base-100 rounded-xl shadow-2xl overflow-hidden flex flex-col h-full border border-gray-200 dark:border-gray-700 project-card hover-element">
       <div className="relative overflow-hidden">
         <img 
           src={project.imageUrl} 
           alt={project.title} 
-          className="w-full h-56 object-cover" 
+          className="w-full h-56 object-cover project-card-image" 
         />
         <div className="absolute top-2 right-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded">
             {project.year}
@@ -39,7 +39,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary flex items-center text-sm"
+              className="text-primary flex items-center text-sm project-link hover-element"
               aria-label={`Live demo of ${project.title}`}
             >
               <ExternalLinkIcon className="w-5 h-5 mr-1" /> Live Demo
@@ -50,7 +50,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral flex items-center text-sm"
+              className="text-neutral flex items-center text-sm project-link hover-element"
               aria-label={`GitHub repository for ${project.title}`}
             >
               <GitHubIcon className="w-5 h-5 mr-1" /> View Code

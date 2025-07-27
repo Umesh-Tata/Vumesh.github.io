@@ -10,16 +10,16 @@ interface SkillsProps {
 }
 
 const SkillItem: React.FC<{ skill: Skill }> = ({ skill }) => (
-  <div className="bg-base-100 p-4 rounded-lg shadow-lg flex flex-col items-center text-center border border-gray-200 dark:border-gray-700">
+  <div className="bg-base-100 p-4 rounded-lg shadow-lg flex flex-col items-center text-center border border-gray-200 dark:border-gray-700 skill-item hover-element">
     {/* Fix: Ensure skill.icon is a valid React element and cast to a specific type for cloneElement.
         This resolves a TypeScript error where 'className' was not recognized on 'Partial<unknown> & Attributes'. */}
     {skill.icon && React.isValidElement(skill.icon) && (
-      <div className="mb-3 text-primary">
+      <div className="mb-3 text-primary skill-icon">
         {React.cloneElement(skill.icon as React.ReactElement<{ className?: string }>, { className: 'w-10 h-10' })}
       </div>
     )}
     <h4 className="text-md font-semibold text-neutral mb-2">{skill.name}</h4>
-    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5">
+    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2.5 skill-bar">
       <div
         className="bg-gradient-to-r from-secondary to-primary h-2.5 rounded-full skill-bar-fill"
         style={{ '--skill-level': `${skill.level}%` } as React.CSSProperties}

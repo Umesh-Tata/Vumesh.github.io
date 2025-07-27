@@ -78,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => scrollToSection(item.href, e)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium
+                  className={`px-3 py-2 rounded-md text-sm font-medium nav-link hover-element
                     ${activeSection === item.href.substring(1)
                       ? 'text-white bg-primary' // Active item
                       : 'text-neutral' // Inactive item
@@ -94,7 +94,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
           <div className="hidden md:block">
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-md text-neutral"
+              className="p-2 rounded-md text-neutral dark-mode-toggle hover-element"
               aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDarkMode ? (
@@ -112,7 +112,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
             {/* Dark Mode Toggle Button for Mobile */}
             <button
               onClick={toggleDarkMode}
-              className="p-2 rounded-md text-neutral"
+              className="p-2 rounded-md text-neutral dark-mode-toggle hover-element"
               aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDarkMode ? (
@@ -128,7 +128,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-neutral focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+              className="inline-flex items-center justify-center p-2 rounded-md text-neutral focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary mobile-menu-button hover-element"
               aria-controls="mobile-menu"
               aria-expanded={isOpen}
             >
@@ -155,7 +155,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => scrollToSection(item.href, e)}
-                className={`block px-3 py-2 rounded-md text-base font-medium
+                className={`block px-3 py-2 rounded-md text-base font-medium nav-link hover-element
                 ${activeSection === item.href.substring(1) ? 'text-white bg-primary' : 'text-neutral'}`}
                 aria-current={activeSection === item.href.substring(1) ? 'page' : undefined}
               >
