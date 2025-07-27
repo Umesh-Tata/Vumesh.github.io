@@ -536,7 +536,7 @@
 /* Mobile tilt prompt styling */
 .mobile-tilt-prompt {
   position: absolute;
-  top: 100px;
+  top: 60px;
   right: 20px;
   z-index: 1000;
   pointer-events: auto;
@@ -546,12 +546,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 16px 24px;
+  gap: 6px;
+  padding: 12px 18px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: 2px solid rgba(139, 92, 246, 0.3);
-  border-radius: 16px;
+  border-radius: 12px;
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.1),
     0 4px 16px rgba(139, 92, 246, 0.2);
@@ -559,7 +559,7 @@
   transition: all 0.3s ease;
   font-weight: 600;
   color: #1f2937;
-  min-width: 200px;
+  min-width: 160px;
 }
 
 .tilt-prompt-button:hover {
@@ -576,12 +576,12 @@
 }
 
 .tilt-prompt-icon {
-  font-size: 24px;
+  font-size: 20px;
   animation: tiltPromptPulse 2s ease-in-out infinite;
 }
 
 .tilt-prompt-text {
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   line-height: 1.2;
 }
@@ -651,21 +651,21 @@
 /* Mobile-specific optimizations for tilt effect */
 @media (max-width: 768px) {
   .mobile-tilt-prompt {
-    top: 80px;
+    top: 50px;
     right: 15px;
   }
   
   .tilt-prompt-button {
-    padding: 12px 20px;
-    min-width: 180px;
+    padding: 10px 16px;
+    min-width: 150px;
   }
   
   .tilt-prompt-text {
-    font-size: 13px;
+    font-size: 11px;
   }
   
   .tilt-prompt-icon {
-    font-size: 20px;
+    font-size: 18px;
   }
   
   /* Ensure smooth performance on mobile */
@@ -680,21 +680,21 @@
 /* Extra small screens */
 @media (max-width: 480px) {
   .mobile-tilt-prompt {
-    top: 70px;
+    top: 45px;
     right: 10px;
   }
   
   .tilt-prompt-button {
-    min-width: 140px;
-    padding: 10px 14px;
+    min-width: 120px;
+    padding: 8px 12px;
   }
   
   .tilt-prompt-text {
-    font-size: 11px;
+    font-size: 10px;
   }
   
   .tilt-prompt-icon {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 /* Additional particle positions for increased density */
