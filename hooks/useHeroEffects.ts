@@ -23,17 +23,17 @@ export const useHeroEffects = () => {
       glowElement.className = 'cursor-glow';
       glowElement.style.cssText = `
         position: absolute;
-        width: 200px;
-        height: 200px;
-        background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(99, 102, 241, 0.3) 40%, rgba(168, 85, 247, 0.2) 60%, transparent 80%);
+        width: 300px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.08) 25%, rgba(168, 85, 247, 0.05) 50%, rgba(139, 92, 246, 0.02) 75%, transparent 90%);
         border-radius: 50%;
         pointer-events: none;
         z-index: 5;
-        transform: translate(-50%, -50%);
-        transition: opacity 0.3s ease;
+        transform: translate3d(-50%, -50%, 0);
+        transition: opacity 0.4s ease-out, transform 0.2s ease-out;
         opacity: 0;
-        filter: blur(1px);
-        box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+        filter: blur(8px);
+        box-shadow: 0 0 60px rgba(139, 92, 246, 0.08), 0 0 120px rgba(99, 102, 241, 0.04), 0 0 180px rgba(168, 85, 247, 0.02);
       `;
       heroElement.appendChild(glowElement);
       cursorGlowRef.current = glowElement;
@@ -45,13 +45,14 @@ export const useHeroEffects = () => {
       trailElement.className = 'cursor-trail';
       trailElement.style.cssText = `
         position: absolute;
-        width: 6px;
-        height: 6px;
-        background: radial-gradient(circle, rgba(139, 92, 246, 0.8), transparent);
+        width: 8px;
+        height: 8px;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.3), rgba(99, 102, 241, 0.15), transparent);
         border-radius: 50%;
         pointer-events: none;
         z-index: 4;
-        animation: cursorTrail 1s ease-out forwards;
+        animation: cursorTrail 1.2s ease-out forwards;
+        filter: blur(2px);
       `;
       heroElement.appendChild(trailElement);
       
@@ -61,7 +62,7 @@ export const useHeroEffects = () => {
           trailElement.parentNode.removeChild(trailElement);
         }
         trailElementsRef.current = trailElementsRef.current.filter(el => el !== trailElement);
-      }, 1000);
+      }, 1200);
       
       return trailElement;
     };
@@ -87,11 +88,11 @@ export const useHeroEffects = () => {
       heroElement.style.setProperty('--mouse-x', `${x}%`);
       heroElement.style.setProperty('--mouse-y', `${y}%`);
 
-      // Update cursor glow position and visibility
+      // Update cursor glow position and visibility with subtle opacity
       if (cursorGlowRef.current) {
         cursorGlowRef.current.style.left = `${e.clientX - rect.left}px`;
         cursorGlowRef.current.style.top = `${e.clientY - rect.top}px`;
-        cursorGlowRef.current.style.opacity = '1';
+        cursorGlowRef.current.style.opacity = '0.7';
       }
 
       // Create trail effect (limit to 3 trail elements for performance)
