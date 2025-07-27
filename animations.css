@@ -389,6 +389,27 @@
 .hero-particle:nth-child(18) { left: 5%; top: 50%; }
 .hero-particle:nth-child(19) { left: 95%; top: 35%; }
 .hero-particle:nth-child(20) { left: 35%; top: 90%; }
+/* Additional particle positions for increased density */
+.hero-particle:nth-child(21) { left: 12%; top: 35%; }
+.hero-particle:nth-child(22) { left: 22%; top: 75%; }
+.hero-particle:nth-child(23) { left: 32%; top: 25%; }
+.hero-particle:nth-child(24) { left: 42%; top: 65%; }
+.hero-particle:nth-child(25) { left: 52%; top: 15%; }
+.hero-particle:nth-child(26) { left: 62%; top: 55%; }
+.hero-particle:nth-child(27) { left: 72%; top: 85%; }
+.hero-particle:nth-child(28) { left: 82%; top: 45%; }
+.hero-particle:nth-child(29) { left: 92%; top: 25%; }
+.hero-particle:nth-child(30) { left: 8%; top: 75%; }
+.hero-particle:nth-child(31) { left: 18%; top: 45%; }
+.hero-particle:nth-child(32) { left: 28%; top: 85%; }
+.hero-particle:nth-child(33) { left: 38%; top: 35%; }
+.hero-particle:nth-child(34) { left: 48%; top: 65%; }
+.hero-particle:nth-child(35) { left: 58%; top: 25%; }
+.hero-particle:nth-child(36) { left: 68%; top: 55%; }
+.hero-particle:nth-child(37) { left: 78%; top: 15%; }
+.hero-particle:nth-child(38) { left: 88%; top: 75%; }
+.hero-particle:nth-child(39) { left: 3%; top: 65%; }
+.hero-particle:nth-child(40) { left: 97%; top: 55%; }
 
 /* Enhanced cursor glow with subtle, smooth transitions */
 .cursor-glow {
@@ -459,3 +480,46 @@
 .touch-device .cursor-trail {
   display: none;
 }
+/* Additional particle positions for increased density */
+.hero-particle:nth-child(21) { left: 12%; top: 35%; }
+.hero-particle:nth-child(22) { left: 22%; top: 75%; }
+.hero-particle:nth-child(23) { left: 32%; top: 25%; }
+.hero-particle:nth-child(24) { left: 42%; top: 65%; }
+.hero-particle:nth-child(25) { left: 52%; top: 15%; }
+.hero-particle:nth-child(26) { left: 62%; top: 55%; }
+.hero-particle:nth-child(27) { left: 72%; top: 85%; }
+.hero-particle:nth-child(28) { left: 82%; top: 45%; }
+.hero-particle:nth-child(29) { left: 92%; top: 25%; }
+.hero-particle:nth-child(30) { left: 8%; top: 75%; }
+.hero-particle:nth-child(31) { left: 18%; top: 45%; }
+.hero-particle:nth-child(32) { left: 28%; top: 85%; }
+.hero-particle:nth-child(33) { left: 38%; top: 35%; }
+.hero-particle:nth-child(34) { left: 48%; top: 65%; }
+.hero-particle:nth-child(35) { left: 58%; top: 25%; }
+.hero-particle:nth-child(36) { left: 68%; top: 55%; }
+.hero-particle:nth-child(37) { left: 78%; top: 15%; }
+.hero-particle:nth-child(38) { left: 88%; top: 75%; }
+.hero-particle:nth-child(39) { left: 3%; top: 65%; }
+.hero-particle:nth-child(40) { left: 97%; top: 55%; }
+
+/* Additional particle positions for increased density */
+.hero-particle:nth-child(21) { left: 12%; top: 35%; }
+.hero-particle:nth-child(22) { left: 22%; top: 75%; }
+.hero-particle:nth-child(23) { left: 32%; top: 25%; }
+.hero-particle:nth-child(24) { left: 42%; top: 65%; }
+.hero-particle:nth-child(25) { left: 52%; top: 15%; }
+.hero-particle:nth-child(26) { left: 62%; top: 55%; }
+.hero-particle:nth-child(27) { left: 72%; top: 85%; }
+.hero-particle:nth-child(28) { left: 82%; top: 45%; }
+.hero-particle:nth-child(29) { left: 92%; top: 25%; }
+.hero-particle:nth-child(30) { left: 8%; top: 75%; }
+.hero-particle:nth-child(31) { left: 18%; top: 45%; }
+.hero-particle:nth-child(32) { left: 28%; top: 85%; }
+.hero-particle:nth-child(33) { left: 38%; top: 35%; }
+.hero-particle:nth-child(34) { left: 48%; top: 65%; }
+.hero-particle:nth-child(35) { left: 58%; top: 25%; }
+.hero-particle:nth-child(36) { left: 68%; top: 55%; }
+.hero-particle:nth-child(37) { left: 78%; top: 15%; }
+.hero-particle:nth-child(38) { left: 88%; top: 75%; }
+.hero-particle:nth-child(39) { left: 3%; top: 65%; }
+.hero-particle:nth-child(40) { left: 97%; top: 55%; }
