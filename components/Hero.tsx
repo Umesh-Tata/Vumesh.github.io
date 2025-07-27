@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHeroEffects } from '../hooks/useHeroEffects';
+import { useMobileTilt } from '../hooks/useMobileTilt';
 import { useDynamicTextContrast } from '../hooks/useDynamicTextContrast';
 import { useWaterRipple } from '../hooks/useWaterRipple';
 
@@ -13,6 +14,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgImageUrl }) => {
   const heroRef = useHeroEffects();
+  const { isMobile, permissionGranted, tiltActive, permissionRequested } = useMobileTilt(heroRef);
   const { getGradientCSS } = useDynamicTextContrast();
   const { createRipple } = useWaterRipple({
     duration: 800,
@@ -31,8 +33,16 @@ const Hero: React.FC<HeroProps> = ({ id, name, tagline, profileImageUrl, heroBgI
 
   return (
     <section ref={heroRef} id={id} className="relative h-screen flex items-center justify-center text-center hero-gradient text-white overflow-hidden">
-      {/* CRITICAL: Parallax background layer - DO NOT REMOVE! This enables cursor-following movement */}
+      {/* CRITICAL: Parallax background layer - DO NOT REMOVE! This enables cursor-following movement on desktop and 3D tilt on mobile */}
       <div className="hero-parallax"></div>
+      
+      {/* Mobile 3D Tilt Status Indicator (for debugging) */}
+      {isMobile && (
+        <div className="absolute top-4 right-4 z-20 text-xs text-white/70 bg-black/20 px-2 py-1 rounded">
+          {!permissionRequested ? 'Tap to enable 3D tilt' : 
+           permissionGranted ? '3D tilt active' : '3D tilt disabled'}
+        </div>
+      )}
       
       {/* Enhanced: Floating particles for dynamic effect */}
       <div className="hero-particles">

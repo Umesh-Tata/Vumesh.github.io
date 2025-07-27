@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 /**
  * Hero Effects Hook - ENHANCED: Added prominent cursor glow, trail effects, and increased dynamic effects
  * This hook provides cursor-based parallax movement, glow effects, and trail effects for the hero section.
+ * MOBILE COMPATIBILITY: Mouse parallax is disabled on mobile devices to prevent conflicts with 3D tilt effect.
  */
 export const useHeroEffects = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -13,11 +14,33 @@ export const useHeroEffects = () => {
   const cursorGlowRef = useRef<HTMLDivElement>(null);
   const trailElementsRef = useRef<HTMLDivElement[]>([]);
 
+  // Mobile device detection for conditional activation
+  const isMobileDevice = (): boolean => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const mobileKeywords = [
+      'android', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone',
+      'mobile', 'tablet', 'phone'
+    ];
+    
+    const isMobileUA = mobileKeywords.some(keyword => userAgent.includes(keyword));
+    const isSmallScreen = window.innerWidth <= 768;
+    const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    return (isMobileUA || (isSmallScreen && hasTouch));
+  };
+
   useEffect(() => {
     const heroElement = heroRef.current;
     if (!heroElement) return;
 
-    // Create cursor glow element if it doesn't exist
+    // MOBILE COMPATIBILITY: Disable mouse parallax on mobile devices
+    const isMobile = isMobileDevice();
+    if (isMobile) {
+      heroElement.classList.add('mobile-device');
+      return; // Exit early - no mouse parallax on mobile
+    }
+
+    // Create cursor glow element if it doesn't exist (desktop only)
     if (!cursorGlowRef.current) {
       const glowElement = document.createElement('div');
       glowElement.className = 'cursor-glow';
@@ -164,8 +187,8 @@ export const useHeroEffects = () => {
     // Start animation loop
     animateParallax();
 
-    // Handle touch devices
-    const isTouchDevice = 'ontouchstart' in window;
+    // Handle touch devices (desktop touch devices only)
+    const isTouchDevice = 'ontouchstart' in window && !isMobile;
     if (isTouchDevice) {
       heroElement.classList.add('touch-device');
       // Hide cursor glow and trail effects on touch devices

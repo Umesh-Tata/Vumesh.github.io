@@ -250,6 +250,34 @@
 
 /* ===== ENHANCED HERO ANIMATIONS ===== */
 
+/* Mobile 3D Tilt Effect Styles */
+.mobile-device .hero-parallax,
+.mobile-device .hero-particles {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+.mobile-device .hero-particle {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Enhanced 3D transforms for mobile tilt effect */
+.hero-parallax,
+.hero-particles {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* Ensure hero section has proper 3D context */
+.hero-gradient {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
 /* Floating particles animation */
 @keyframes float {
   0%, 100% {
@@ -495,6 +523,20 @@
     animation: none;
     filter: blur(6px);
   }
+  
+  /* Mobile 3D Tilt Performance Optimizations */
+  .mobile-device .hero-parallax,
+  .mobile-device .hero-particles {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  
+  .mobile-device .hero-particle {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
 }
 
 /* Reduced motion support */
@@ -523,6 +565,15 @@
 }
 
 .touch-device .cursor-trail {
+  display: none;
+}
+
+/* Mobile device with 3D tilt - keep particles visible */
+.mobile-device .hero-particle {
+  display: block !important;
+}
+
+.mobile-device .cursor-trail {
   display: none;
 }
 /* Additional particle positions for increased density */
