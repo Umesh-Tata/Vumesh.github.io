@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Tilt Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .device-info {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .tilt-data {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .tilt-prompt {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .tilt-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .tilt-button:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .status.success {
+            background: rgba(34, 197, 94, 0.3);
+            border: 1px solid rgba(34, 197, 94, 0.5);
+        }
+        
+        .status.error {
+            background: rgba(239, 68, 68, 0.3);
+            border: 1px solid rgba(239, 68, 68, 0.5);
+        }
+        
+        .status.info {
+            background: rgba(59, 130, 246, 0.3);
+            border: 1px solid rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Mobile Tilt Effect Test</h1>
+        
+        <div class="device-info">
+            <h3>Device Information</h3>
+            <p><strong>User Agent:</strong> <span id="userAgent"></span></p>
+            <p><strong>Screen Size:</strong> <span id="screenSize"></span></p>
+            <p><strong>Touch Support:</strong> <span id="touchSupport"></span></p>
+            <p><strong>Detected as Mobile:</strong> <span id="isMobile"></span></p>
+        </div>
+        
+        <div class="tilt-prompt" id="tiltPrompt" style="display: none;">
+            <button class="tilt-button" onclick="enableTilt()">
+                📱 Enable 3D Tilt Effect
+            </button>
+        </div>
+        
+        <div class="tilt-data" id="tiltData" style="display: none;">
+            <h3>Tilt Data</h3>
+            <p><strong>Beta (Front-to-Back):</strong> <span id="beta">0</span>°</p>
+            <p><strong>Gamma (Left-to-Right):</strong> <span id="gamma">0</span>°</p>
+            <p><strong>Alpha (Rotation):</strong> <span id="alpha">0</span>°</p>
+        </div>
+        
+        <div id="status"></div>
+    </div>
+
+    <script>
+        // Mobile device detection (same as in the hook)
+        function detectMobileDevice() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const mobileKeywords = [
+                'android', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone',
+                'mobile', 'tablet', 'phone'
+            ];
+            
+            const isMobileUA = mobileKeywords.some(keyword => userAgent.includes(keyword));
+            const isMobileScreen = window.innerWidth <= 768 || window.innerHeight <= 768;
+            const hasTouchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            return isMobileUA && (isMobileScreen || hasTouchSupport);
+        }
+
+        // Update device info
+        function updateDeviceInfo() {
+            document.getElementById('userAgent').textContent = navigator.userAgent;
+            document.getElementById('screenSize').textContent = `${window.innerWidth} x ${window.innerHeight}`;
+            document.getElementById('touchSupport').textContent = ('ontouchstart' in window || navigator.maxTouchPoints > 0) ? 'Yes' : 'No';
+            
+            const isMobile = detectMobileDevice();
+            document.getElementById('isMobile').textContent = isMobile ? 'Yes' : 'No';
+            
+            if (isMobile) {
+                document.getElementById('tiltPrompt').style.display = 'block';
+                showStatus('Mobile device detected! Click the button to enable tilt effect.', 'info');
+            } else {
+                showStatus('Desktop device detected. Tilt effect is only available on mobile devices.', 'info');
+            }
+        }
+
+        // Enable tilt effect
+        async function enableTilt() {
+            try {
+                // Check if DeviceOrientationEvent.requestPermission is available (iOS 13+)
+                if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    const permission = await DeviceOrientationEvent.requestPermission();
+                    
+                    if (permission === 'granted') {
+                        startTiltTracking();
+                        showStatus('Permission granted! Tilt effect is now active.', 'success');
+                    } else {
+                        showStatus('Permission denied. Tilt effect cannot be enabled.', 'error');
+                    }
+                } else {
+                    // For Android and other devices where permission is implicit
+                    startTiltTracking();
+                    showStatus('Tilt effect is now active!', 'success');
+                }
+            } catch (error) {
+                console.warn('Device orientation permission error:', error);
+                showStatus('Error enabling tilt effect: ' + error.message, 'error');
+            }
+        }
+
+        // Start tracking tilt data
+        function startTiltTracking() {
+            document.getElementById('tiltPrompt').style.display = 'none';
+            document.getElementById('tiltData').style.display = 'block';
+            
+            window.addEventListener('deviceorientation', (event) => {
+                document.getElementById('beta').textContent = Math.round(event.beta || 0);
+                document.getElementById('gamma').textContent = Math.round(event.gamma || 0);
+                document.getElementById('alpha').textContent = Math.round(event.alpha || 0);
+            });
+        }
+
+        // Show status message
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.innerHTML = `<div class="status ${type}">${message}</div>`;
+            
+            // Clear status after 5 seconds
+            setTimeout(() => {
+                statusDiv.innerHTML = '';
+            }, 5000);
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', updateDeviceInfo);
+        
+        // Update on resize
+        window.addEventListener('resize', updateDeviceInfo);
+    </script>
+</body>
+</html>

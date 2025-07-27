@@ -323,6 +323,26 @@
   display: none !important;
 }
 
+/* Mobile device optimizations - completely disable mouse parallax */
+.mobile-device .hero-parallax {
+  transform: none !important;
+  transition: none !important;
+}
+
+.mobile-device .cursor-glow {
+  display: none !important;
+}
+
+/* Ensure mobile tilt effect works properly */
+.mobile-device {
+  overflow: hidden;
+}
+
+.mobile-device .hero-content {
+  z-index: 10;
+  position: relative;
+}
+
 /* ===== WATER RIPPLE EFFECT STYLES ===== */
 .water-ripple-container {
   pointer-events: none;

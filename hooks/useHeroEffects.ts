@@ -164,13 +164,28 @@ export const useHeroEffects = () => {
     // Start animation loop
     animateParallax();
 
-    // Handle touch devices
+    // Handle touch devices and mobile detection
     const isTouchDevice = 'ontouchstart' in window;
-    if (isTouchDevice) {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const mobileKeywords = ['android', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone', 'mobile', 'tablet', 'phone'];
+    const isMobileUA = mobileKeywords.some(keyword => userAgent.includes(keyword));
+    const isMobileScreen = window.innerWidth <= 768 || window.innerHeight <= 768;
+    const isMobile = isMobileUA && (isMobileScreen || isTouchDevice);
+    
+    if (isTouchDevice || isMobile) {
       heroElement.classList.add('touch-device');
       // Hide cursor glow and trail effects on touch devices
       if (cursorGlowRef.current) {
         cursorGlowRef.current.style.display = 'none';
+      }
+      
+      // Disable mouse parallax on mobile devices
+      if (isMobile) {
+        heroElement.classList.add('mobile-device');
+        // Remove mouse event listeners for mobile
+        heroElement.removeEventListener('mousemove', updateCursorPosition);
+        heroElement.removeEventListener('mouseleave', handleMouseLeave);
+        return; // Exit early to prevent parallax initialization on mobile
       }
     }
 
