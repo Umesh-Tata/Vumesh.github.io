@@ -22,7 +22,7 @@ interface AboutProps {
 
 const About: React.FC<AboutProps> = ({ id, icon, summary, profileImageUrl, phone, email }) => {
   return (
-    <Section id={id} title="About Me" titleIcon={icon} className="bg-base-100">
+    <Section id={id} title="About Me" titleIcon={icon} className="bg-base-100 about-section">
       <div className="grid md:grid-cols-3 gap-8 items-center">
         <div className="md:col-span-1">
           <img 
@@ -31,11 +31,11 @@ const About: React.FC<AboutProps> = ({ id, icon, summary, profileImageUrl, phone
             className="rounded-lg shadow-xl mx-auto w-full max-w-xs md:max-w-sm"
           />
         </div>
-        <div className="md:col-span-2 space-y-4 text-lg text-neutral">
+        <div className="md:col-span-2 space-y-4 text-lg text-neutral text-center">
           <p className="whitespace-pre-line">
             {summary}
           </p>
-           <div className="mt-6 space-y-3">
+           <div className="mt-6 space-y-3 flex flex-col items-center">
             {email && (
               <div className="flex items-center text-neutral">
                 <EnvelopeIcon className="w-5 h-5 mr-3 text-secondary flex-shrink-0" />
@@ -50,7 +50,7 @@ const About: React.FC<AboutProps> = ({ id, icon, summary, profileImageUrl, phone
               </div>
             )}
           </div>
-          <p>
+          <p className="text-center">
             I thrive in collaborative environments, working closely with designers, backend developers, and product managers to bring visions to life. I'm a lifelong learner, constantly exploring new technologies and methodologies to stay at the forefront of web development.
           </p>
         </div>

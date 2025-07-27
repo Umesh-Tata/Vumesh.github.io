@@ -410,3 +410,18 @@
   background-color: rgb(234 179 8) !important; /* Force light mode yellow-500 */
   color: rgb(51 65 85) !important; /* Force light mode neutral text color */
 }
+
+/* About section responsive styles */
+@media (max-width: 768px) {
+  .about-section .md\:col-span-2 {
+    text-align: center;
+  }
+  
+  .about-section .flex.flex-col.items-center {
+    align-items: center;
+  }
+  
+  .about-section .flex.items-center {
+    justify-content: center;
+  }
+}
