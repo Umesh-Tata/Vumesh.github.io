@@ -42,12 +42,8 @@ const Skills: React.FC<SkillsProps> = ({ id, skills, icon }) => {
       className="bg-base-100"
     >
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        {skills.map((skill, index) => (
-          <div 
-            key={skill.id} 
-            className="animate-fade-in-up"
-            style={{ animationDelay: `${index * 0.1}s` }}
-          >
+        {skills.map((skill) => (
+          <div key={skill.id}>
              <SkillItem skill={skill} />
           </div>
         ))}

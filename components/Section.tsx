@@ -12,10 +12,10 @@ interface SectionProps {
 
 const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, className = '', titleIcon }) => {
   return (
-    <section id={id} className={`py-16 md:py-24 section-transition ${className}`}>
+    <section id={id} className={`py-16 md:py-24 ${className}`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         {title && (
-          <div className="text-center mb-12 animate-fade-in-up">
+          <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-3 flex items-center justify-center section-title hover-element">
               {titleIcon && <span className="mr-3">{titleIcon}</span>}
               {title}
@@ -23,7 +23,7 @@ const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, classN
             {subtitle && <p className="text-lg md:text-xl text-neutral max-w-2xl mx-auto">{subtitle}</p>}
           </div>
         )}
-        <div className="animate-fade-in-up animate-stagger-1">
+        <div>
           {children}
         </div>
       </div>

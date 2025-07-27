@@ -11,7 +11,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { Project, Skill, TimelineEvent, NavItem } from './types';
 import { useDarkMode } from './hooks/useDarkMode';
-import { useScrollProgress, useSectionTransitions } from './hooks/useScrollAnimations';
+import { useScrollProgress } from './hooks/useScrollAnimations';
 import { useAnimationInitializer } from './hooks/useAnimationInitializer';
 import { usePerformanceOptimizer } from './hooks/usePerformanceOptimizer';
 import {
@@ -190,7 +190,6 @@ const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const { isDarkMode } = useDarkMode();
   const scrollProgress = useScrollProgress();
-  useSectionTransitions();
   useAnimationInitializer();
   usePerformanceOptimizer();
 
@@ -276,7 +275,7 @@ const App: React.FC = () => {
       {showScrollTop && (
         <button
           onClick={scrollTop}
-          className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg z-50 animate-fade-in-up"
+          className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full shadow-lg z-50"
           aria-label="Scroll to top"
         >
           <ArrowUpIcon className="w-6 h-6" />
