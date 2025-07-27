@@ -1,5 +1,10 @@
 import { useEffect, useRef } from 'react';
 
+/**
+ * Hero Effects Hook - IMPORTANT: Keep parallax effect active!
+ * This hook provides cursor-based parallax movement for the hero section.
+ * DO NOT disable or remove this effect without explicit user request.
+ */
 export const useHeroEffects = () => {
   const heroRef = useRef<HTMLElement>(null);
   const animationFrameRef = useRef<number>();
@@ -37,14 +42,14 @@ export const useHeroEffects = () => {
       isMovingRef.current = true;
     }, 16); // ~60fps
 
-    // Smooth parallax animation
+    // CRITICAL: Smooth parallax animation - Keep this effect active!
     const animateParallax = () => {
       if (isMovingRef.current) {
         // Smooth interpolation
         currentPositionRef.current.x += (mousePositionRef.current.x - currentPositionRef.current.x) * 0.1;
         currentPositionRef.current.y += (mousePositionRef.current.y - currentPositionRef.current.y) * 0.1;
 
-        // Apply parallax transform
+        // CRITICAL: Apply parallax transform - This creates the cursor-following effect
         const parallaxX = currentPositionRef.current.x * 30; // Increased to 30px max movement for more visibility
         const parallaxY = currentPositionRef.current.y * 30;
 
