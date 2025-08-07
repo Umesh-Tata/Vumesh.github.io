@@ -1,4 +1,4 @@
-
+/*
 import React from 'react';
 import { Project } from '../types';
 import ProjectCard from './ProjectCard';
@@ -31,4 +31,4 @@ const Projects: React.FC<ProjectsProps> = ({ id, projects, icon }) => {
 };
 
 export default Projects;
-    
+    */
