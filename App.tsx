@@ -164,7 +164,7 @@ const educationData: TimelineEvent[] = [
     logoUrl: 'https://picsum.photos/seed/wsu-logo/40/40'
   },
 ];
-const projectsData: Project[] = [
+/*const projectsData: Project[] = [
   {
     id: 'project-android-converter',
     title: 'Unit Converter App',
@@ -185,7 +185,7 @@ const projectsData: Project[] = [
     //repoUrl: '#', // Placeholder
     year: 'Recent'
   }
-];
+]; */
 const App: React.FC = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [personalInfo, setPersonalInfo] = useState(initialPersonalInfo);
