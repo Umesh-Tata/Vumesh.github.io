@@ -44,7 +44,7 @@ const navItemsData: NavItem[] = [
   { name: 'Experience', href: '#experience' },
   { name: 'Education', href: '#education' },
   { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
+  // { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -267,11 +267,11 @@ const App: React.FC = () => {
             skills={skillsData} 
             icon={<WrenchScrewdriverIcon className="w-8 h-8 inline-block mr-2" />} 
         />
-        <Projects 
+        {/* <Projects 
             id="projects" 
             projects={projectsData} 
             icon={<CodeBracketIcon className="w-8 h-8 inline-block mr-2" />} 
-        />
+        /> */}
         <Contact 
             id="contact" 
             icon={<EnvelopeIcon className="w-8 h-8 inline-block mr-2" />} 
