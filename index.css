@@ -162,7 +162,7 @@
   }
 }
 
-/* Dynamic text gradient for the name element */
+/* Dynamic text gradient for the name element - reactive to background */
 .hero-name-gradient {
   background: var(--hero-name-primary-gradient, linear-gradient(
     -45deg,
@@ -179,11 +179,12 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textGradientAnimation 8s ease infinite;
+  /* No independent animation - purely reactive to background */
   font-weight: inherit;
   display: inline-block;
   position: relative;
   z-index: 1;
+  transition: background 0.1s ease-out; /* Smooth color transitions */
 }
 
 /* Enhanced text shadow for better readability against varying backgrounds */
@@ -208,14 +209,14 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: textGradientAnimation 8s ease infinite;
+  /* No independent animation - reactive to background */
   filter: blur(2px);
   opacity: 0.7;
+  transition: background 0.1s ease-out; /* Smooth color transitions */
 }
 
 /* Hover effect for enhanced interactivity */
 .hero-name-gradient:hover {
-  animation-duration: 4s;
   transform: scale(1.02);
   transition: transform 0.3s ease;
   filter: brightness(1.1) contrast(1.1);
@@ -236,35 +237,23 @@
   filter: blur(8px);
   opacity: 0.3;
   z-index: -2;
-  animation: textGradientAnimation 8s ease infinite;
+  /* No independent animation - reactive to background */
+  transition: background 0.1s ease-out; /* Smooth color transitions */
 }
 
 /* Mobile optimizations for the text gradient */
 @media (max-width: 768px) {
-  .hero-name-gradient {
-    animation-duration: 10s; /* Slightly slower on mobile for better performance */
-  }
-  
   .hero-name-gradient::before {
-    animation-duration: 10s;
     filter: blur(1.5px); /* Slightly less blur on mobile */
   }
   
   .hero-name-gradient::after {
-    animation-duration: 10s;
     filter: blur(6px); /* Reduced glow blur on mobile */
   }
 }
 
 /* Reduced motion support for the text gradient */
 @media (prefers-reduced-motion: reduce) {
-  .hero-name-gradient,
-  .hero-name-gradient::before,
-  .hero-name-gradient::after {
-    animation: none;
-    background-position: 0% 50%;
-  }
-  
   .hero-name-gradient:hover {
     transform: none;
     filter: none;
